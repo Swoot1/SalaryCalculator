@@ -34,7 +34,7 @@ class TaxCalculationReportGenerator{
 
       $taxCalculationReport->setOwnFees($ownFees);
 
-      $baseDeductionCalculator                = new BaseDeductionCalculator($this->baseAmountsForCurrentYear);
+      $baseDeductionCalculator                = new BaseDeductionCalculator($this->baseAmountsForCurrentYear, $taxCalculationReport);
       $baseDeductionRoundedUpToNearestHundred = $baseDeductionCalculator->calculateBaseDeductionRoundedUpToNearestHundred($taxCalculationReport);
 
       $taxCalculationReport->setBaseDeductionRoundedUpToNearestHundred($baseDeductionRoundedUpToNearestHundred);

@@ -7,9 +7,14 @@ class BaseDeductionCalculator{
     * @var BaseAmounts
     */
    private $baseAmounts;
+   /**
+    * @var TaxCalculationReport
+    */
+   private $taxCalculationReport;
 
-   public function __construct(BaseAmounts $baseAmounts){
+   public function __construct(BaseAmounts $baseAmounts, TaxCalculationReport $taxCalculationReport){
       $this->baseAmounts = $baseAmounts;
+      $this->taxCalculationReport = $taxCalculationReport;
    }
 
    /**
@@ -24,7 +29,15 @@ class BaseDeductionCalculator{
    public function calculateBaseDeductionRoundedUpToNearestHundred(TaxCalculationReport $taxCalculationReport){
       $baseDeduction = $this->calculateBaseDeduction($taxCalculationReport);
 
+      if($this->isLargerThanEstablishedBusinessExcess($baseDeduction)){
+         $baseDeduction = $this->taxCalculationReport->getEstablishedBusinessExcess();
+      }
+
       return ceil($baseDeduction / 100) * 100;
+   }
+
+   private function isLargerThanEstablishedBusinessExcess($baseDeduction){
+      return $baseDeduction > $this->taxCalculationReport->getEstablishedBusinessExcess();
    }
 
    /**
