@@ -24,8 +24,6 @@ class BaseDeductionCalculator{
     * @param TaxCalculationReport $taxCalculationReport
     * @return float
     */
-
-   // TODO this should not be larger than the businessexcess!!!
    public function calculateBaseDeductionRoundedUpToNearestHundred(TaxCalculationReport $taxCalculationReport){
       $baseDeduction = $this->calculateBaseDeduction($taxCalculationReport);
 

@@ -1,0 +1,95 @@
+<div class="row">
+    <div class="large-6 columns">
+        <form ng-model="salaryCalculation" ng-model-options="{debounce : 500}">
+            <label>
+                Vilket år är du född?
+                <input type="number" ng-model="salaryCalculation.birthYear" ng-change="calculate()"/>
+            </label>
+            <label>
+                Antal timmar du kan fakturera per månad
+                <input type="number" ng-model="test.numberOfHoursToBillMonthly" ng-change="calculate()"/>
+            </label>
+            <label>
+                Inkomst efter moms och kostnader
+                <input type="text" ng-model="salaryCalculation.earnedIncome" ng-change="calculate()"/>
+                <input type="range" ng-model="salaryCalculation.earnedIncome" min="400000" max="1500000" step="30000" ng-change="calculate()"/>
+            </label>
+        </form>
+    </div>
+</div>
+
+<div class="row">
+    <div class="large-6 columns">
+        <p ng-if="!showCostsForm"><span class="link" ng-click="setShowCostsForm(true)">Lägg till kostnader</span> för
+            att få ett mer rättvist resultat.</p>
+
+        <p><span class="link" ng-if="showCostsForm" ng-click="setShowCostsForm(false)">Dölj kostnader</span></p>
+
+        <div ng-if="showCostsForm">
+            <form>
+                <label>
+                    Namn på kostnad t.ex. 'hyra av lokal' eller 'revisorkostnad'
+                    <input type="text" ng-model="cost.typeOfCost"/>
+                </label>
+                <label>Månadsavgift för kostnaden
+                    <input type="number" ng-model="cost.monthlyCost"/>
+                </label>
+                <input type="button" class="button tiny radius" ng-click="addCostToCostCollection(cost)"
+                       value="Lägg till kostnad"/>
+            </form>
+
+            <div ng-if="costCollection.length">
+                <p>Kostnader</p>
+
+                <p ng-repeat="cost in costCollection">{{cost.typeOfCost}} {{cost.monthlyCost}} kr/månad <input
+                        class="button tiny alert radius" type="button" value="x"
+                        ng-click="deleteCostFromCostCollection($index)"/></p>
+
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="large-7 columns">
+        <p>Månadslön efter skatt: {{calculateMonthlyWageAfterTaxes() | formattomoney}} kr</p>
+
+        <p>Timarvode exkl. moms: {{calculateHourlyBillAmount() | formattomoney}} kr</p>
+
+    </div>
+</div>
+
+<div class="row">
+    <div class="large-7 columns">
+        <p><span class="link" ng-if="!calculationsAreVisible" ng-click="setCalculationsAreVisible(true)">Visa skatteuträkning</span>
+        </p>
+
+        <p><span class="link" ng-if="calculationsAreVisible" ng-click="setCalculationsAreVisible(false)">Dölj skatteuträkning</span>
+        </p>
+
+        <div ng-if="calculationsAreVisible">
+            <p style="font-weight: 900">Årets skatteuträkning:</p>
+
+            <p>Fastställd förvärvsinkomst: {{salaryCalculation.establishedBusinessExcess}}</p>
+
+            <p>Grundavdrag: {{salaryCalculation.baseDeductionRoundedUpToNearestHundred}}</p>
+
+            <p>Beskattningsbar förvärvsinkomst: {{salaryCalculation.taxableIncome}}</p>
+
+            <p>Egenavgifter och allmän löneavgift: {{salaryCalculation.ownFees}}</p>
+
+            <p>Kommunal inkomstskatt: {{salaryCalculation.municipalityTaxRoundedDownToFullCrowns}}</p>
+
+            <p>Statlig inkomstskatt: {{salaryCalculation.stateIncomeTax}}</p>
+
+            <p>Förhöjd statlig inkomstskatt: {{salaryCalculation.increasedStateIncomeTax}}</p>
+
+            <p>Allmän pensionsavgift: {{salaryCalculation.generalRetirementFeeRoundedToClosestHundred}}</p>
+
+            <p>Skattereduktion för allmän pensionsavgift: {{salaryCalculation.generalRetirementFeeDeduction}}</p>
+
+            <p>Skattereduktion för arbetsinkomster (jobbskatteavdrag): {{salaryCalculation.largestPossibleWorkTaxDeduction}}</p>
+
+            <p>Skatt att betala: {{salaryCalculation.sumOfTaxes}}</p>
+        </div>
+    </div>
+</div>

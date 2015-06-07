@@ -107,7 +107,7 @@ class GeneralRetirementFeeCalculator{
     */
    public function calculateGeneralRetirementFeeDeduction(Person $person){
       $generalRetirementFeeDeduction                     = $this->calculateGeneralRetirementFeeRoundedToClosestHundred($person);
-      $sumOfMunicipalityAndStateTaxes                    = $this->taxCalculationReport->getSumOfTaxes();
+      $sumOfMunicipalityAndStateTaxes                    = $this->taxCalculationReport->getSumOfMunicipalityAndStateTaxes();
       $isGeneralRetirementFeeDeductionLargerThanTheTaxes = $generalRetirementFeeDeduction > $sumOfMunicipalityAndStateTaxes;
 
       if ($isGeneralRetirementFeeDeductionLargerThanTheTaxes){

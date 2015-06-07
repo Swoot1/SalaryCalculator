@@ -8,15 +8,17 @@ class TaxCalculationReport{
    protected $baseDeductionRoundedUpToNearestHundred;
    protected $taxableIncome;
    protected $ownFees;
-   protected $municipalityTaxRoundedDownToFullCrowns;
-   protected $stateIncomeTax;
-   protected $increasedStateIncomeTax;
+   protected $municipalityTaxRoundedDownToFullCrowns = 0;
+   protected $stateIncomeTax = 0;
+   protected $increasedStateIncomeTax = 0;
    protected $generalRetirementFeeRoundedToClosestHundred;
    protected $generalRetirementFeeDeduction;
    protected $largestPossibleWorkTaxDeduction;
+   protected $sumOfTaxes = 0;
+   protected $remainingAmountAfterTaxes = 0;
 
 
-   public function getSumOfTaxes(){
+   public function getSumOfMunicipalityAndStateTaxes(){
       return $this->municipalityTaxRoundedDownToFullCrowns + $this->stateIncomeTax + $this->increasedStateIncomeTax;
    }
 
@@ -35,6 +37,7 @@ class TaxCalculationReport{
     */
    public function setEarnedIncome($earnedIncome){
       $this->earnedIncome = $earnedIncome;
+      $this->setEstablishedEarnedIncome();
    }
 
    public function setOwnFees($ownFees){
@@ -55,6 +58,7 @@ class TaxCalculationReport{
 
    public function setMunicipalityTaxRoundedDownToFullCrowns($municipalityTaxRoundedDownToFullCrowns){
       $this->municipalityTaxRoundedDownToFullCrowns = $municipalityTaxRoundedDownToFullCrowns;
+      $this->setSumOfTaxes();
    }
 
    public function getTaxableIncome(){
@@ -71,10 +75,12 @@ class TaxCalculationReport{
 
    public function setStateIncomeTax($stateIncomeTax){
       $this->stateIncomeTax = $stateIncomeTax;
+      $this->setSumOfTaxes();
    }
 
    public function setIncreasedStateIncomeTax($increasedStateIncomeTax){
       $this->increasedStateIncomeTax = $increasedStateIncomeTax;
+      $this->setSumOfTaxes();
    }
 
    public function setGeneralRetirementFeeRoundedToClosestHundred($generalRetirementFeeRoundedToClosestHundred){
@@ -119,5 +125,26 @@ class TaxCalculationReport{
 
    public function toJSON(){
       return json_encode(get_object_vars($this));
+   }
+
+   private function setSumOfTaxes(){
+      $this->sumOfTaxes = $this->getSumOfMunicipalityAndStateTaxes();
+      $this->setRemainingAmountAfterTaxes();
+   }
+
+   private function setRemainingAmountAfterTaxes(){
+      $this->remainingAmountAfterTaxes = $this->establishedBusinessExcess - $this->sumOfTaxes;
+   }
+
+   public function getEstablishedEarnedIncome(){
+      return $this->establishedEarnedIncome;
+   }
+
+   /**
+    * The earned income rounded down to closest hundred.
+    * http://www.skatteverket.se/tw/hjalptexter14.html
+    */
+   private function setEstablishedEarnedIncome(){
+      $this->establishedEarnedIncome = floor($this->earnedIncome / 100) * 100;
    }
 }

@@ -2,7 +2,11 @@
 
 
 class Person{
-   private $birthYear = 1990; // TODO change
+   private $birthYear;
+
+   public function __construct(array $data){
+      $this->birthYear = isset($data["birthYear"]) ? $data["birthYear"] : 1980; // TODO validation
+   }
 
    /**
     * @return mixed

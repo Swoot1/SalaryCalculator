@@ -20,7 +20,7 @@ class EstablishedBusinessExcessCalculator{
     * @return int
     */
    public function calculateEstablishedBusinessExcess(){
-      return $this->getEstablishedEarnedIncome() - $this->getStandardDeductionForOwnFees();
+      return $this->taxCalculationReport->getEstablishedEarnedIncome() - $this->getStandardDeductionForOwnFees();
    }
 
    /**
@@ -30,15 +30,6 @@ class EstablishedBusinessExcessCalculator{
    private function getStandardDeductionForOwnFees(){
       $standardDeductionInDecimalPercentage = 0.25;
 
-      return $this->getEstablishedEarnedIncome() * $standardDeductionInDecimalPercentage;
-   }
-
-
-   /**
-    * The earned income rounded down to closest hundred.
-    * http://www.skatteverket.se/tw/hjalptexter14.html
-    */
-   private function getEstablishedEarnedIncome(){
-      return floor($this->taxCalculationReport->getEarnedIncome() / 100) * 100;
+      return $this->taxCalculationReport->getEstablishedEarnedIncome() * $standardDeductionInDecimalPercentage;
    }
 } 
