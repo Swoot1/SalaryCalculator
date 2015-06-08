@@ -6,21 +6,32 @@
                 <input type="number" ng-model="salaryCalculation.birthYear" ng-change="calculate()"/>
             </label>
             <label>
-                Antal timmar du kan fakturera per månad
-                <input type="number" ng-model="test.numberOfHoursToBillMonthly" ng-change="calculate()"/>
+                Hur många procent av din arbetade tid kan du fakturera till kund?
+                <input type="range" ng-model="test.billableTimePercentage" ng-change="calculate()" min="10" max="100" step="5"/>
+                <p>{{test.billableTimePercentage}} %</p>
             </label>
             <label>
-                Inkomst efter moms och kostnader
-                <input type="text" ng-model="salaryCalculation.earnedIncome" ng-change="calculate()"/>
-                <input type="range" ng-model="salaryCalculation.earnedIncome" min="400000" max="1500000" step="30000" ng-change="calculate()"/>
+                Antal procent av inkomsten som ska återinvesteras i företaget
+                <input type="range" ng-model="test.profitPercentageOfIncome" min="0" max="100" step="5" />
+                <p>{{test.profitPercentageOfIncome}}%</p>
             </label>
+            <label>
+                Antal semesterdagar
+                <input type="range" ng-model="test.numberOfVacationDaysInAYear" min="0" max="50" step="1" />
+                <p> {{test.numberOfVacationDaysInAYear}} </p>
+            </label>
+            <label>
+                Årets inkomst efter att moms och kostnader har dragits av
+                <input type="range" style="width:100%;" ng-model="salaryCalculation.earnedIncome" min="200000" max="1500000" step="10000" ng-change="calculate()"/>
+            </label>
+            <p> {{salaryCalculation.earnedIncome}} </p>
         </form>
     </div>
 </div>
 
 <div class="row">
     <div class="large-6 columns">
-        <p ng-if="!showCostsForm"><span class="link" ng-click="setShowCostsForm(true)">Lägg till kostnader</span> för
+        <p ng-if="!showCostsForm"><span class="link" ng-click="setShowCostsForm(true)">Lägg till företagets kostnader</span> för
             att få ett mer rättvist resultat.</p>
 
         <p><span class="link" ng-if="showCostsForm" ng-click="setShowCostsForm(false)">Dölj kostnader</span></p>
@@ -54,6 +65,8 @@
         <p>Månadslön efter skatt: {{calculateMonthlyWageAfterTaxes() | formattomoney}} kr</p>
 
         <p>Timarvode exkl. moms: {{calculateHourlyBillAmount() | formattomoney}} kr</p>
+
+        <p>Företagets vinst per månad (skattad): {{calculateProfitPerMonth() | formattomoney}} kr</p>
 
     </div>
 </div>
@@ -89,7 +102,7 @@
 
             <p>Skattereduktion för arbetsinkomster (jobbskatteavdrag): {{salaryCalculation.largestPossibleWorkTaxDeduction}}</p>
 
-            <p>Skatt att betala: {{salaryCalculation.sumOfTaxes}}</p>
+            <p>Skatt att betala (preliminärskatt): {{salaryCalculation.sumOfTaxes}}</p>
         </div>
     </div>
 </div>

@@ -29,28 +29,3 @@ header('Charset: UTF-8');
 header('Content-Type: applications/json');
 
 echo $taxCalculationReport->toJSON();
-
-///**
-// * https://www.verksamt.se/alla-e-tjanster/rakna-ut/rakna-ut-vad-en-anstalld-kostar?p_auth=27BPkUWM&p_p_id=tvv_webcalc_WAR_tvv_webcalc&p_p_lifecycle=1&p_p_state=normal&p_p_mode=view&p_p_col_id=column-1&p_p_col_count=1&_tvv_webcalc_WAR_tvv_webcalc_com.sun.faces.portlet.VIEW_ID=%2Fsalary%2FcalcSalaryAge.xhtml&_tvv_webcalc_WAR_tvv_webcalc_com.sun.faces.portlet.NAME_SPACE=_tvv_webcalc_WAR_tvv_webcalc_
-// * @return mixed
-// */
-//function calculateVacationSalaryPerMonth(){
-//
-//   $vacationPercentage              = 12;
-//   $vacationPercentageInDecimalForm = $vacationPercentage / 100;
-//   $numberOfWorkingMonthsInAYear    = 11;
-//
-//
-//   return getMonthlySalary() * $numberOfWorkingMonthsInAYear * $vacationPercentageInDecimalForm;
-//}
-//
-//function getNumberOfWorkingDaysInAYearMinusVacationDays(){
-//   $minimumNumberOfWorkingDaysInAYear = 249;
-//
-//   return $minimumNumberOfWorkingDaysInAYear - getNumberOfVacationDaysInOneYear();
-//}
-//
-//
-//function getNumberOfVacationDaysInOneYear(){
-//   return 25;
-//}
