@@ -48,16 +48,16 @@ class WorkTaxDeductionCalculator{
     * @return float|int
     */
    private function calculateWorkTaxDeduction(Person $person){
-      if ($this->isPersonSixtyFiveYearsOrYounger($person)){
-         $calculator = new WorkTaxDeductionCalculatorForPersonSixtyFourYearsOrYounger($this->taxCalculationReport, $this->baseAmounts);
+      if ($this->isPersonSixtySixYearsOrYounger($person)){
+         $calculator = new WorkTaxDeductionCalculatorForPersonSixtySixYearsOrYounger($this->taxCalculationReport, $this->baseAmounts);
       } else{
-         $calculator = new WorkTaxDeductionCalculatorForPersonSixtySixYearsOrYounger($this->taxCalculationReport);
+         $calculator = new WorkTaxDeductionCalculatorForPersonSixtySevenYearsOrOlder($this->taxCalculationReport);
       }
 
       return $calculator->calculateWorkTaxDeduction();
    }
 
-   private function isPersonSixtyFiveYearsOrYounger(Person $person){
-      return $person->getAge() < 66;
+   private function isPersonSixtySixYearsOrYounger(Person $person){
+      return $person->getAge() < 67;
    }
 } 

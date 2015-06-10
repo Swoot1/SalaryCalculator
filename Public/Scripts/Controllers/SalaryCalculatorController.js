@@ -3,8 +3,10 @@
       $scope.calculationsAreVisible = false;
       $scope.showCostsForm = false;
       $scope.salaryCalculation = {
-         birthYear: 1980,
-         earnedIncome: 256054
+         person: {
+            birthYear: 1978
+         },
+         earnedIncome: 30000
       };
       $scope.test = {
          numberOfVacationDaysInAYear: 25,

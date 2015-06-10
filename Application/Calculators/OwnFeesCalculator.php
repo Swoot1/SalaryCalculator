@@ -25,8 +25,9 @@ class OwnFeesCalculator{
 
    /**
     * Returns own fee percentage in decimal form (procent i decimalform för att räkna ut egenavgift) based on the persons age and seven days of "karens".
-    * // Could also be better if number of "karensdagar" could be chosen.
+    * // Could also be better if number of "karensdagar" could be chosen. // TODO
     * https://www.skatteverket.se/foretagorganisationer/arbetsgivare/socialavgifter/egenavgifter.4.233f91f71260075abe8800020987.html
+    * // Could also be better if nedsättningsbelopp av egenavgifter was added http://www.skatteverket.se/hjalptexter/EfInk1bNedsattEa.html
     * @internal param \Person $person
     * @return float|int
     */

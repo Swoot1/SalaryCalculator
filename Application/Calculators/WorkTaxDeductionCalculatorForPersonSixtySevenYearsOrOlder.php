@@ -1,7 +1,7 @@
 <?php
 
 
-class WorkTaxDeductionCalculatorForPersonSixtySixYearsOrYounger{
+class WorkTaxDeductionCalculatorForPersonSixtySevenYearsOrOlder{
 
    /**
     * @var TaxCalculationReport
@@ -24,7 +24,7 @@ class WorkTaxDeductionCalculatorForPersonSixtySixYearsOrYounger{
       if ($establishedBusinessExcess <= $breakPointAmount1ForHigherTaxes){
          $workTaxDeduction += $establishedBusinessExcess * $taxPercentageInDecimalFormForAmountUpToBreakPoint;
       } else if ($establishedBusinessExcess <= $breakPointAmount2ForHigherTaxes){
-         $workTaxDeduction = 15000 + $establishedBusinessExcess * $taxPercentageInDecimalFormForAmountOverBreakPoint2;
+         $workTaxDeduction = 15000 + ($establishedBusinessExcess * $taxPercentageInDecimalFormForAmountOverBreakPoint2);
       } else{
          $workTaxDeduction = 30000;
       }

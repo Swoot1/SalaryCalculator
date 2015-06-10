@@ -15,13 +15,14 @@ class TaxCalculationReportGenerator{
 
    public function __construct(Person $person, $earnedIncome, BaseAmounts $baseAmountsForCurrentYear){
 
-      $this->person = $person;
-      $this->earnedIncome = $earnedIncome;
+      $this->person                    = $person;
+      $this->earnedIncome              = $earnedIncome;
       $this->baseAmountsForCurrentYear = $baseAmountsForCurrentYear;
    }
 
    public function createTaxCalculationReport(){
       $taxCalculationReport = new TaxCalculationReport();
+      $taxCalculationReport->setPerson($this->person);
       $taxCalculationReport->setEarnedIncome($this->earnedIncome);
 
       $establishedBusinessExcessCalculator = new EstablishedBusinessExcessCalculator($taxCalculationReport);

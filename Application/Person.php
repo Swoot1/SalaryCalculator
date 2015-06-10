@@ -1,8 +1,10 @@
 <?php
 
 
-class Person{
-   private $birthYear;
+use Application\PHPFramework\GeneralModel;
+
+class Person extends GeneralModel{
+   protected $birthYear;
 
    public function __construct(array $data){
       $this->birthYear = isset($data["birthYear"]) ? $data["birthYear"] : 1980; // TODO validation

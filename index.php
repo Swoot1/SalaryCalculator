@@ -1,6 +1,8 @@
 <?php
 use Application\PHPFramework\JsonParser;
 
+require_once 'Application/PHPFramework/IToJSON.php';
+require_once 'Application/PHPFramework/GeneralModel.php';
 require_once 'Application/Person.php';
 require_once 'Application/BaseAmounts.php';
 require_once 'Application/Calculators/BaseDeductionCalculator.php';
@@ -13,19 +15,18 @@ require_once 'Application/Calculators/TaxableIncomeCalculator.php';
 require_once 'Application/TaxCalculationReport.php';
 require_once 'Application/TaxCalculationReportGenerator.php';
 require_once 'Application/Calculators/WorkTaxDeductionCalculator.php';
-require_once 'Application/Calculators/WorkTaxDeductionCalculatorForPersonSixtyFiveYearsOrYounger.php';
-require_once 'Application/Calculators/WorkTaxDeductionCalculatorForPersonSixtySixYearsOrOlder.php';
+require_once 'Application/Calculators/WorkTaxDeductionCalculatorForPersonSixtySixYearsOrYounger.php';
+require_once 'Application/Calculators/WorkTaxDeductionCalculatorForPersonSixtySevenYearsOrOlder.php';
 require_once 'Application/PHPFramework/JsonParser.php';
-
 
 $jsonParser = new JsonParser();
 $result     = $jsonParser->parse(file_get_contents('php://input'));
-$taxCalculationReportGenerator = new TaxCalculationReportGenerator(new Person(array()), $result['earnedIncome'], new BaseAmounts());
+$taxCalculationReportGenerator = new TaxCalculationReportGenerator(new Person(array('birthYear' => $result['person']['birthYear'])), $result['earnedIncome'], new BaseAmounts());
 $taxCalculationReport = $taxCalculationReportGenerator->createTaxCalculationReport();
 
 $protocol = isset($_SERVER["SERVER_PROTOCOL"]) ? $_SERVER['SERVER_PROTOCOL'] : 'HTTP/1.0';
 header(sprintf("%s %s", $protocol, '200 OK'), true, 200);
 header('Charset: UTF-8');
-header('Content-Type: applications/json');
+header('Content-Type: application/json');
 
-echo $taxCalculationReport->toJSON();
+echo json_encode($taxCalculationReport->toArray(), JSON_UNESCAPED_UNICODE);

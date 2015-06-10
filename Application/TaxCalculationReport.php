@@ -1,7 +1,10 @@
 <?php
 
 
-class TaxCalculationReport{
+use Application\PHPFramework\GeneralModel;
+
+class TaxCalculationReport extends GeneralModel {
+   protected $person;
    protected $earnedIncome;
    protected $establishedEarnedIncome;
    protected $establishedBusinessExcess;
@@ -17,19 +20,8 @@ class TaxCalculationReport{
    protected $sumOfTaxes = 0;
    protected $remainingAmountAfterTaxes = 0;
 
-
-   public function getSumOfMunicipalityAndStateTaxes(){
-      return $this->municipalityTaxRoundedDownToFullCrowns + $this->stateIncomeTax + $this->increasedStateIncomeTax;
-   }
-
-   public function calculateTaxes(){
-      return $this->municipalityTaxRoundedDownToFullCrowns + $this->stateIncomeTax + $this->increasedStateIncomeTax - $this->generalRetirementFeeDeduction - $this->largestPossibleWorkTaxDeduction;
-   }
-
-   public function calculateAmountLeftAfterTaxesAndFees(){
-      return $this->establishedBusinessExcess - $this->calculateTaxes()
-             - $this->generalRetirementFeeRoundedToClosestHundred
-             - $this->generalRetirementFeeDeduction;
+   public function setPerson(Person $person){
+      $this->person = $person;
    }
 
    /**
@@ -42,6 +34,7 @@ class TaxCalculationReport{
 
    public function setOwnFees($ownFees){
       $this->ownFees = $ownFees;
+      $this->setSumOfTaxes();
    }
 
    public function setEstablishedBusinessExcess($establishedBusinessExcess){
@@ -85,10 +78,12 @@ class TaxCalculationReport{
 
    public function setGeneralRetirementFeeRoundedToClosestHundred($generalRetirementFeeRoundedToClosestHundred){
       $this->generalRetirementFeeRoundedToClosestHundred = $generalRetirementFeeRoundedToClosestHundred;
+      $this->setSumOfTaxes();
    }
 
    public function setGeneralRetirementFeeDeduction($generalRetirementFeeDeduction){
       $this->generalRetirementFeeDeduction = $generalRetirementFeeDeduction;
+      $this->setSumOfTaxes();
    }
 
    /**
@@ -100,6 +95,7 @@ class TaxCalculationReport{
 
    public function setLargestPossibleWorkTaxDeduction($largestPossibleWorkTaxDeduction){
       $this->largestPossibleWorkTaxDeduction = $largestPossibleWorkTaxDeduction;
+      $this->setSumOfTaxes();
    }
 
    /**
@@ -123,17 +119,14 @@ class TaxCalculationReport{
       return $this->earnedIncome;
    }
 
-   public function toJSON(){
-      return json_encode(get_object_vars($this));
-   }
-
    private function setSumOfTaxes(){
-      $this->sumOfTaxes = $this->getSumOfMunicipalityAndStateTaxes();
-      $this->setRemainingAmountAfterTaxes();
-   }
-
-   private function setRemainingAmountAfterTaxes(){
-      $this->remainingAmountAfterTaxes = $this->establishedBusinessExcess - $this->sumOfTaxes;
+      $this->sumOfTaxes = $this->municipalityTaxRoundedDownToFullCrowns
+                          + $this->stateIncomeTax
+                          + $this->increasedStateIncomeTax
+                          + $this->generalRetirementFeeRoundedToClosestHundred
+                          - $this->generalRetirementFeeDeduction
+                          - $this->largestPossibleWorkTaxDeduction;
+      $this->calculateRemainingAmountAfterTaxes();
    }
 
    public function getEstablishedEarnedIncome(){
@@ -146,5 +139,15 @@ class TaxCalculationReport{
     */
    private function setEstablishedEarnedIncome(){
       $this->establishedEarnedIncome = floor($this->earnedIncome / 100) * 100;
+   }
+
+   public function calculateRemainingAmountAfterTaxes(){
+      $this->remainingAmountAfterTaxes = $this->establishedEarnedIncome - $this->sumOfTaxes;
+   }
+
+   public function getSumOfMunicipalityAndStateTaxes(){
+      return $this->municipalityTaxRoundedDownToFullCrowns
+             + $this->stateIncomeTax
+             + $this->increasedStateIncomeTax;
    }
 }
