@@ -27,14 +27,14 @@
          if (!$scope.salaryCalculation.remainingAmountAfterTaxes) {
             monthlyWage = 0;
          } else {
-            monthlyWage = ($scope.salaryCalculation.remainingAmountAfterTaxes / numberOfMonthsInAYear - $scope.calculateProfitPerMonth())/(1 + getVacationPercentageOfSalaryInDecimalForm());
+            monthlyWage = ($scope.salaryCalculation.remainingAmountAfterTaxes / numberOfMonthsInAYear - $scope.calculateProfitPerMonth()) / (1 + getVacationPercentageOfSalaryInDecimalForm());
          }
          return  monthlyWage;
       };
 
-      var getVacationPercentageOfSalaryInDecimalForm = function(){
+      var getVacationPercentageOfSalaryInDecimalForm = function () {
          var vacationDayPercentageOfSalaryInDecimalForm = 0.48;
-         return $scope.test.numberOfVacationDaysInAYear * vacationDayPercentageOfSalaryInDecimalForm/100;
+         return $scope.test.numberOfVacationDaysInAYear * vacationDayPercentageOfSalaryInDecimalForm / 100;
       };
 
       $scope.calculateHourlyBillAmount = function () {
@@ -45,13 +45,13 @@
          return !sum ? 0 : sum / numberOfHoursToBillYearly;
       };
 
-      var getNumberOfHoursToBillMonthly = function(){
-         var billableTimePercentageInDecimalForm = $scope.test.billableTimePercentage/100;
+      var getNumberOfHoursToBillMonthly = function () {
+         var billableTimePercentageInDecimalForm = $scope.test.billableTimePercentage / 100;
          var numberOfMonthsInAYear = 12;
          return billableTimePercentageInDecimalForm * getNumberOfWorkableHoursInAYear() / numberOfMonthsInAYear;
       };
 
-      var getNumberOfWorkableHoursInAYear = function(){
+      var getNumberOfWorkableHoursInAYear = function () {
          var minimumNumberOfWorkingDaysInAYear = 224;
          var actualNumberWorkingDaysInAYear = minimumNumberOfWorkingDaysInAYear - $scope.test.numberOfVacationDaysInAYear;
          var numberOfWorkingHoursInADay = 8;
@@ -95,10 +95,24 @@
       };
 
       $scope.calculateProfitPerMonth = function () {
-         var profitPercentageOfIncomeInDecimalForm = $scope.test.profitPercentageOfIncome/100;
+         var profitPercentageOfIncomeInDecimalForm = $scope.test.profitPercentageOfIncome / 100;
          var numberOfMonthsInAYear = 12;
-         return profitPercentageOfIncomeInDecimalForm * $scope.salaryCalculation.remainingAmountAfterTaxes/numberOfMonthsInAYear;
+         return profitPercentageOfIncomeInDecimalForm * $scope.salaryCalculation.remainingAmountAfterTaxes / numberOfMonthsInAYear;
       };
+
+      $scope.personBirthYearCollection = (function () {
+         var years = [];
+         var currentYear = parseInt(new Date().getFullYear(), 10);
+         var year = currentYear - 18;
+         var birthYearForOneHundredYearsOld = currentYear - 100;
+
+         while (year >= birthYearForOneHundredYearsOld) {
+            years.push(year);
+            year--;
+         }
+
+         return years;
+      })();
 
       $scope.costCollection = [];
    }]);

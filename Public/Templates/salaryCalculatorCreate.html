@@ -3,7 +3,10 @@
         <form ng-model="salaryCalculation" ng-model-options="{debounce : 500}">
             <label>
                 Vilket år är du född?
-                <input type="number" ng-model="salaryCalculation.birthYear" ng-change="calculate()"/>
+                <select ng-model="salaryCalculation.birthYear" ng-change="calculate()">
+                    <option value=""></option>
+                    <option ng-repeat="personBirthYear in personBirthYearCollection" value="{{personBirthYear}}">{{personBirthYear}}</option>
+                </select>
             </label>
             <label>
                 Hur många procent av din arbetade tid kan du fakturera till kund?

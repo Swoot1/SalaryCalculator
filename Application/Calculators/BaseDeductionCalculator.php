@@ -1,6 +1,9 @@
 <?php
 
-
+/**
+ * https://lagen.nu/begrepp/Grundavdrag
+ * Class BaseDeductionCalculator
+ */
 class BaseDeductionCalculator{
 
    /**

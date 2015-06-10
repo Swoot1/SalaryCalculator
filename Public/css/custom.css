@@ -1,0 +1,266 @@
+body {
+    background-color: #edeff0;
+}
+
+.container {
+    border: 1px solid #E1E8ED;
+    background: none repeat scroll 0 0 #FFF;
+    margin-top: 22px;
+    padding: 15px 0;
+}
+
+.front-welcome-text {
+    font-size: 1.777em;
+    line-height: 1.2em;
+    margin-top: 1.6em;
+    color: #222222;
+    font-family: 'Droid Sans', sans-serif;
+}
+
+.front-background {
+    background: none;
+}
+
+.front-box {
+    border: 1px solid #E1E8ED;
+    background: none repeat scroll 0 0 #FFF;
+    border-radius: 4px;
+    margin-top: 22px;
+}
+
+.front-box-text {
+    font-weight: 500;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.6);
+    font-size: 17px;
+    color: #292F33;
+}
+
+.front-box-text-2 {
+    border-bottom: 1px solid #E1E8ED;
+    box-shadow: 0 1px 0 #FFF;
+    display: block;
+    color: #292F33;
+    font-size: 10px;
+    font-weight: 300;
+    margin-bottom: 12px;
+    padding: 10px 12px;
+    position: relative;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.6);
+}
+
+.front-card {
+    margin-top: 50px;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+/* Hide the spin button from inputs with type number */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    /* display: none; <- Crashes Chrome on hover */
+    -webkit-appearance: none;
+    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+
+/* Clickable text should have link appearance */
+
+p.link, span.link {
+    color: #008cba;
+    cursor: pointer;
+}
+
+p.link:hover, span.link:hover {
+    color: #02ABE3;
+}
+
+.red {
+    color: red;
+}
+
+.green {
+    color: green;
+}
+
+/* Dialog */
+
+#overlay {
+    /*visibility: hidden;*/
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
+    background-color: rgba(0, 0, 0, 0.5);
+
+}
+
+#overlay div.content {
+    max-width: 700px;
+    margin: 100px auto;
+    background-color: #fff;
+    border: 1px solid #000;
+    height: 400px;
+    padding: 15px;
+    overflow-y: scroll;
+}
+
+/* Payment cards */
+
+.visa-card-icon-small {
+    display: inline-block;
+    width: 35px;
+    height: 22px;
+    background: url('images/credit_card_icons.png') 366px 108px;
+}
+
+.master-card-icon-small {
+    display: inline-block;
+    width: 35px;
+    height: 22px;
+    background: url('images/credit_card_icons.png') 219px 108px;
+}
+
+.paypal-card-icon-small {
+    display: inline-block;
+    width: 35px;
+    height: 22px;
+    background: url('images/credit_card_icons.png') 72px 108px;
+}
+
+.visa-card-icon-large {
+    display: inline-block;
+    width: 69px;
+    height: 43px;
+    background: url('images/credit_card_icons.png') 383px 222px;
+}
+
+.master-card-icon-large {
+    display: inline-block;
+    width: 65px;
+    height: 43px;
+    background: url('images/credit_card_icons.png') 233px 222px;
+}
+
+.paypal-card-icon-large {
+    display: inline-block;
+    width: 69px;
+    height: 43px;
+    background: url('images/credit_card_icons.png') 88px 222px;
+}
+
+.payment-card {
+    margin-top: 26px;
+}
+
+/* Menu */
+
+button.menu-item, a.menu-item {
+    padding: 10px !important;
+    color: #222 !important;
+    background-color: #f8f8f8 !important;
+}
+
+button.menu-item:hover, a.menu-item:hover {
+    text-decoration: underline;
+}
+
+.top-bar {
+    background-color: #f8f8f8;
+    height: 50px;
+}
+
+li.active > a.menu-item {
+    background-color: #ededed !important;
+}
+
+.header_nav {
+    margin-bottom: 0;
+    padding: 0 0 0;
+}
+
+/* Footer */
+
+.footer-list {
+    list-style-type: none;
+}
+
+.footer-list li a {
+    color: #222;
+}
+
+.freetext {
+    height: 150px;
+}
+
+.center-text {
+    text-align: center;
+}
+
+.align-button {
+    margin-top: 23px;
+}
+
+.bold {
+    font-weight: 900;
+}
+
+.inline-block {
+    display: inline-block;
+    width: 100%
+}
+
+.shopping-cart-menu {
+    position: absolute;
+    right: 100px;
+    top: 66px;
+    background: white;
+    z-index: 100;
+    border-left: solid 1px #dddddd;
+    border-right: solid 1px #dddddd;
+    border-bottom: solid 1px #dddddd;
+}
+
+.shopping-cart-menu table {
+    border: 0;
+}
+
+.shopping-cart-menu button {
+    margin: 0 0 1.25rem;
+}
+
+.shopping-cart-menu input {
+    text-align: right;
+}
+
+input.shopping-cart-quantity {
+    width: 35px;
+    display: inline-block;
+}
+
+.shopping-cart-menu .go-to-register-button-container {
+    width: 130px;
+}
+
+.shopping-cart-menu .go-to-register-button-container button {
+    margin: 0 0 1rem;
+}
+
+.thumbnail {
+    height: 35px;
+    width: 45px;
+}
+
+.number-rectangle{
+    background: #008CBA;
+    display: inline-block;
+    padding: 0 10px;
+    color: #fff;
+}
+
+.row {
+    width: auto;
+    max-width: 960px;
+}
