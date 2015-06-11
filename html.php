@@ -23,19 +23,6 @@ echo '<!DOCTYPE html>
     <div class="large-12 columns">
          <div id="content">
             <div class="row">
-                <div class="large-12 columns header_nav">
-                    <nav class="top-bar" data-topbar>
-                       <ul class="title-area">
-                         <li class="name">
-                           <h1>Löneuträknare</h1>
-                         </li>
-                          <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
-                         <li class="toggle-topbar menu-icon"><a href="#"><span>Meny</span></a></li>
-                       </ul>
-                     </nav>
-                </div>
-            </div>
-            <div class="row">
                 <div class="large-12 columns">
                   <span alertbox></span>
                 </div>
