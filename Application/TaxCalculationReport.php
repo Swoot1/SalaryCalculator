@@ -121,6 +121,7 @@ class TaxCalculationReport extends GeneralModel {
 
    private function setSumOfTaxes(){
       $this->sumOfTaxes = $this->municipalityTaxRoundedDownToFullCrowns
+                          + $this->ownFees
                           + $this->stateIncomeTax
                           + $this->increasedStateIncomeTax
                           + $this->generalRetirementFeeRoundedToClosestHundred
