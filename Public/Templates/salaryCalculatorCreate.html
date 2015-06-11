@@ -20,9 +20,11 @@
                     <option ng-repeat="township in townships" value="{{$index}}">{{township.township}}</option>
                 </select>
             </label>
-            <label>Är du medlem i Svenska Kyrkan?
-                <br/>
+            <label>Är du medlem i Svenska Kyrkan?</label>
+            <label>
                 <input type="radio" ng-model="municipalityTaxInformation.isMemberOfSwedishChurch" name="isMemberOfSwedishChurch" ng-value="{{true}}"> Ja
+                </label>
+            <label>
                 <input type="radio" ng-model="municipalityTaxInformation.isMemberOfSwedishChurch" name="isMemberOfSwedishChurch" ng-value="{{false}}"> Nej
             </label>
             <label>
