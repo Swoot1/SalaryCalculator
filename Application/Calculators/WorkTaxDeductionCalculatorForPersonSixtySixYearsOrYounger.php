@@ -14,7 +14,7 @@ class WorkTaxDeductionCalculatorForPersonSixtySixYearsOrYounger{
    }
 
    public function calculateWorkTaxDeduction(){
-      $municipalityTaxPercentageInDecimalForm = $this->getMunicipalityTaxPercentage() / 100;
+      $municipalityTaxPercentageInDecimalForm = $this->taxCalculationReport->getMunicipalityTaxPercentage() / 100;
 
       return $this->calculateWorkTaxDeductionBasisRoundedDownToClosestHundred() * $municipalityTaxPercentageInDecimalForm;
    }
@@ -46,9 +46,5 @@ class WorkTaxDeductionCalculatorForPersonSixtySixYearsOrYounger{
       }
 
       return $workTaxDeductionBasis - $baseDeduction;
-   }
-
-   private function getMunicipalityTaxPercentage(){ // TODO also exists in MunicipalityTaxCalculator
-      return 31.86;
    }
 } 

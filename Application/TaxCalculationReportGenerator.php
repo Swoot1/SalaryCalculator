@@ -45,8 +45,8 @@ class TaxCalculationReportGenerator{
 
       $taxCalculationReport->setTaxableIncome($taxableIncome);
 
-      $municipalityTaxCalculator              = new MunicipalityTaxCalculator();
-      $municipalityTaxRoundedDownToFullCrowns = $municipalityTaxCalculator->calculateMunicipalityTaxRoundedDownToFullCrowns($taxCalculationReport);
+      $municipalityTaxCalculator              = new MunicipalityTaxCalculator($taxCalculationReport);
+      $municipalityTaxRoundedDownToFullCrowns = $municipalityTaxCalculator->calculateMunicipalityTaxRoundedDownToFullCrowns();
 
       $taxCalculationReport->setMunicipalityTaxRoundedDownToFullCrowns($municipalityTaxRoundedDownToFullCrowns);
 

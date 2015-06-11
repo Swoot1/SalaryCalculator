@@ -2,27 +2,32 @@
 
 
 class MunicipalityTaxCalculator{
+
+   /**
+    * @var TaxCalculationReport
+    */
+   private $taxCalculationReport;
+
+   public function __construct(TaxCalculationReport $taxCalculationReport){
+
+      $this->taxCalculationReport = $taxCalculationReport;
+   }
+
    /**
     * Calculates the municipality tax (kommunskatt) rounded to crowns. 0.50 is rounded down to closes crown.
-    * @param TaxCalculationReport $taxCalculationReport
     * @return float
     */
-   public function calculateMunicipalityTaxRoundedDownToFullCrowns(TaxCalculationReport $taxCalculationReport){
-      return floor($this->calculateMunicipalityTax($taxCalculationReport));
+   public function calculateMunicipalityTaxRoundedDownToFullCrowns(){
+      return floor($this->calculateMunicipalityTax());
    }
 
    /**
     * Calculates the municipality tax (kommunskatt)
-    * @param TaxCalculationReport $taxCalculationReport
     * @return float
     */
-   private function calculateMunicipalityTax(TaxCalculationReport $taxCalculationReport){
-      $municipalityTaxPercentageInDecimalForm = $this->getMunicipalityTaxPercentage() / 100;
+   private function calculateMunicipalityTax(){
+      $municipalityTaxPercentageInDecimalForm = $this->taxCalculationReport->getMunicipalityTaxPercentage() / 100;
 
-      return $municipalityTaxPercentageInDecimalForm * $taxCalculationReport->getTaxableIncome();
-   }
-
-   private function getMunicipalityTaxPercentage(){
-      return 31.86;
+      return $municipalityTaxPercentageInDecimalForm * $this->taxCalculationReport->getTaxableIncome();
    }
 }

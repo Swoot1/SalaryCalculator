@@ -57,6 +57,7 @@ echo '<!DOCTYPE html>
 <script type="text/javascript" src="Public/Scripts/Vendor/fastclick.js"></script>
 <script type="text/javascript" src="Public/Scripts/app.js"></script>
 <script type="text/javascript" src="Public/Scripts/Services/AlertBoxService.js"></script>
+<script type="text/javascript" src="Public/Scripts/Services/MunicipalityService.js"></script>
 <script type="text/javascript" src="Public/Scripts/Factories/RequestErrorInterceptorFactory.js"></script>
 <script type="text/javascript" src="Public/Scripts/Factories/RequestSuccessInterceptorFactory.js"></script>
 <script type="text/javascript" src="Public/Scripts/Factories/SalaryCalculationFactory.js"></script>

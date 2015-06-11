@@ -21,7 +21,7 @@ require_once 'Application/PHPFramework/JsonParser.php';
 
 $jsonParser = new JsonParser();
 $result     = $jsonParser->parse(file_get_contents('php://input'));
-$taxCalculationReportGenerator = new TaxCalculationReportGenerator(new Person(array('birthYear' => $result['person']['birthYear'])), $result['earnedIncome'], new BaseAmounts());
+$taxCalculationReportGenerator = new TaxCalculationReportGenerator(new Person(array('birthYear' => $result['person']['birthYear'], 'municipalityTaxPercentage' => $result['person']['municipalityTaxPercentage'])), $result['earnedIncome'], new BaseAmounts());
 $taxCalculationReport = $taxCalculationReportGenerator->createTaxCalculationReport();
 
 $protocol = isset($_SERVER["SERVER_PROTOCOL"]) ? $_SERVER['SERVER_PROTOCOL'] : 'HTTP/1.0';

@@ -1,18 +1,44 @@
 (function () {
-   angular.module('salaryCalculator').controller('SalaryCalculatorController', ['$scope', 'SalaryCalculationFactory', function ($scope, SalaryCalculationFactory) {
+   angular.module('salaryCalculator').controller('SalaryCalculatorController', ['$scope', 'SalaryCalculationFactory', 'MunicipalityService', function ($scope, SalaryCalculationFactory, MunicipalityService) {
       $scope.calculationsAreVisible = false;
       $scope.showCostsForm = false;
+      $scope.personBirthYearCollection =
+         (function () {
+         var years = [];
+         var currentYear = new Date().getFullYear();
+         var year = currentYear - 18;
+         var birthYearForOneHundredYearsOld = currentYear - 100;
+
+         while (year >= birthYearForOneHundredYearsOld) {
+            years.push(year);
+            year--;
+         }
+
+         return years;
+      })();
+      var defaultAge = 35;
+      var currentYear = new Date().getFullYear();
+      var defaultBirthYear = (currentYear - defaultAge);
       $scope.salaryCalculation = {
          person: {
-            birthYear: 1978
+            birthYear: defaultBirthYear,
+            municipalityTaxPercentage: 32
          },
-         earnedIncome: 30000
+         earnedIncome: 50000
       };
       $scope.test = {
          numberOfVacationDaysInAYear: 25,
          billableTimePercentage: 60,
          profitPercentageOfIncome: 10
       };
+
+      $scope.municipalityTaxInformation = {
+         isMemberOfSwedishChurch: true,
+         municipalityIndex: 0,
+         townshipIndex: 0
+      };
+
+      $scope.municipalities = MunicipalityService.getMunicipalities();
 
       $scope.calculate = function () {
          var salaryCalculation = new SalaryCalculationFactory($scope.salaryCalculation);
@@ -102,20 +128,36 @@
          return profitPercentageOfIncomeInDecimalForm * $scope.salaryCalculation.remainingAmountAfterTaxes / numberOfMonthsInAYear;
       };
 
-      $scope.personBirthYearCollection = (function () {
-         var years = [];
-         var currentYear = parseInt(new Date().getFullYear(), 10);
-         var year = currentYear - 18;
-         var birthYearForOneHundredYearsOld = currentYear - 100;
+      $scope.costCollection = [];
 
-         while (year >= birthYearForOneHundredYearsOld) {
-            years.push(year);
-            year--;
+      $scope.setTownships = function (indexOfMunicipality) {
+         $scope.townships = typeof indexOfMunicipality === 'undefined' ? [] : $scope.municipalities[indexOfMunicipality].townships;
+      };
+
+      $scope.setTownships($scope.municipalityTaxInformation.municipalityIndex);
+
+      var setMunicipalityTax = function () {
+         var municipalityIndex = $scope.municipalityTaxInformation.municipalityIndex;
+         var townshipIndex = $scope.municipalityTaxInformation.townshipIndex;
+         var taxData = $scope.municipalities[municipalityIndex].townships[townshipIndex];
+         var municipalityTaxPercentage = 0;
+
+         if ($scope.municipalityTaxInformation.isMemberOfSwedishChurch) {
+            municipalityTaxPercentage = taxData.sumOfPercentagesInclChurchFeePercentage;
+         } else {
+            municipalityTaxPercentage = taxData.sumOfPercentagesExclChurchFeePercentage;
          }
 
-         return years;
-      })();
+         $scope.salaryCalculation.person.municipalityTaxPercentage = municipalityTaxPercentage;
+      };
 
-      $scope.costCollection = [];
+      var setTownShipIndexToZero = function(){
+         $scope.municipalityTaxInformation.townshipIndex = 0;
+         setMunicipalityTax();
+      };
+
+      $scope.$watch('municipalityTaxInformation.townshipIndex', setMunicipalityTax);
+      $scope.$watch('municipalityTaxInformation.municipalityIndex', setTownShipIndexToZero);
+      $scope.$watch('municipalityTaxInformation.isMemberOfSwedishChurch', setMunicipalityTax);
    }]);
 })();

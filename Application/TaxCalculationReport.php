@@ -150,4 +150,15 @@ class TaxCalculationReport extends GeneralModel {
              + $this->stateIncomeTax
              + $this->increasedStateIncomeTax;
    }
+
+   /**
+    * @return mixed
+    */
+   public function getPerson(){
+      return $this->person;
+   }
+
+   public function getMunicipalityTaxPercentage(){
+      return $this->person->getMunicipalityTaxPercentage();
+   }
 }

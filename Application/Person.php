@@ -5,9 +5,11 @@ use Application\PHPFramework\GeneralModel;
 
 class Person extends GeneralModel{
    protected $birthYear;
+   protected $municipalityTaxPercentage;
 
    public function __construct(array $data){
-      $this->birthYear = isset($data["birthYear"]) ? $data["birthYear"] : 1980; // TODO validation
+      $this->birthYear                 = isset($data["birthYear"]) ? $data["birthYear"] : 1980; // TODO validation
+      $this->municipalityTaxPercentage = isset($data["municipalityTaxPercentage"]) ? $data["municipalityTaxPercentage"] : 32; // TODO validation
    }
 
    /**
@@ -24,5 +26,9 @@ class Person extends GeneralModel{
    private function getCurrentYear(){
 
       return $currentYear = date("Y");
+   }
+
+   public function getMunicipalityTaxPercentage(){
+      return $this->municipalityTaxPercentage;
    }
 } 

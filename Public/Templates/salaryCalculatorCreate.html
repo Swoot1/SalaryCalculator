@@ -4,9 +4,26 @@
             <label>
                 Vilket år är du född?
                 <select ng-model="salaryCalculation.person.birthYear" ng-change="calculate()">
-                    <option value=""></option>
                     <option ng-repeat="personBirthYear in personBirthYearCollection" value="{{personBirthYear}}">{{personBirthYear}}</option>
                 </select>
+            </label>
+
+            <label>
+                Vilken kommun bor du i?
+                <select ng-model="municipalityTaxInformation.municipalityIndex" ng-change="setTownships(municipalityTaxInformation.municipalityIndex)">
+                    <option ng-repeat="municipality in municipalities" value="{{$index}}">{{municipality.municipality}}</option>
+                </select>
+            </label>
+            <label>
+                Vilken församling tillhör du?
+                <select ng-model="municipalityTaxInformation.townshipIndex">
+                    <option ng-repeat="township in townships" value="{{$index}}">{{township.township}}</option>
+                </select>
+            </label>
+            <label>Är du medlem i Svenska Kyrkan?
+                <br/>
+                <input type="radio" ng-model="municipalityTaxInformation.isMemberOfSwedishChurch" name="isMemberOfSwedishChurch" ng-value="{{true}}"> Ja
+                <input type="radio" ng-model="municipalityTaxInformation.isMemberOfSwedishChurch" name="isMemberOfSwedishChurch" ng-value="{{false}}"> Nej
             </label>
             <label>
                 Hur många procent av din arbetade tid kan du fakturera till kund?
