@@ -24,12 +24,12 @@
             birthYear: defaultBirthYear,
             municipalityTaxPercentage: 32
          },
-         earnedIncome: 50000
+         earnedIncome: 600000
       };
       $scope.test = {
          numberOfVacationDaysInAYear: 25,
          billableTimePercentage: 60,
-         profitPercentageOfIncome: 10
+         profitPercentageOfIncome: 20
       };
 
       $scope.municipalityTaxInformation = {
@@ -150,6 +150,8 @@
 
          $scope.salaryCalculation.person.municipalityTaxPercentage = municipalityTaxPercentage;
       };
+
+      setMunicipalityTax();
 
       var setTownShipIndexToZero = function(){
          $scope.municipalityTaxInformation.townshipIndex = 0;
