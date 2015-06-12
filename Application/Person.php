@@ -1,16 +1,15 @@
 <?php
 
+namespace Application;
 
 use Application\PHPFramework\GeneralModel;
+use Application\PHPFramework\Validation\Collections\ValueValidationCollection;
+use Application\PHPFramework\Validation\FloatValidation;
+use Application\PHPFramework\Validation\IntegerValidation;
 
 class Person extends GeneralModel{
-   protected $birthYear;
-   protected $municipalityTaxPercentage;
-
-   public function __construct(array $data){
-      $this->birthYear                 = isset($data["birthYear"]) ? $data["birthYear"] : 1980; // TODO validation
-      $this->municipalityTaxPercentage = isset($data["municipalityTaxPercentage"]) ? $data["municipalityTaxPercentage"] : 32; // TODO validation
-   }
+   protected $birthYear = 1980;
+   protected $municipalityTaxPercentage = 32;
 
    /**
     * @return mixed
@@ -31,4 +30,23 @@ class Person extends GeneralModel{
    public function getMunicipalityTaxPercentage(){
       return $this->municipalityTaxPercentage;
    }
-} 
+
+   protected function setUpValidation(){
+      $this->_validation = new ValueValidationCollection(
+         array(
+            new IntegerValidation(
+               array(
+                  'genericName'  => 'födelseår',
+                  'propertyName' => 'birthYear'
+               )
+            ),
+            new FloatValidation(
+               array(
+                  'genericName'      => 'kommunalskatt',
+                  'propertyName'     => 'municipalityTaxPercentage',
+                  'numberOfDecimals' => 2
+               )
+            )
+         ));
+   }
+}

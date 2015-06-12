@@ -10,7 +10,7 @@
 namespace Application\PHPFramework;
 
 
-use Application\PHPFramework\ErrorHandling\Exceptions\BadJsonException; // TODO
+use Application\PHPFramework\ErrorHandling\Exceptions\BadJsonException;
 
 class JsonParser{
 

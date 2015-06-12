@@ -1,5 +1,9 @@
 <?php
 
+namespace Application\Calculators;
+
+use Application\Person;
+use Application\TaxCalculationReport;
 
 class OwnFeesCalculator{
 

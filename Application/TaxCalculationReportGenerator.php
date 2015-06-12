@@ -1,23 +1,33 @@
 <?php
 
+namespace Application;
 
-class TaxCalculationReportGenerator{
+use Application\Calculators\BaseDeductionCalculator;
+use Application\Calculators\EstablishedBusinessExcessCalculator;
+use Application\Calculators\GeneralRetirementFeeCalculator;
+use Application\Calculators\MunicipalityTaxCalculator;
+use Application\Calculators\OwnFeesCalculator;
+use Application\Calculators\StateIncomeTaxCalculator;
+use Application\Calculators\TaxableIncomeCalculator;
+use Application\Calculators\WorkTaxDeductionCalculator;
+use Application\PHPFramework\GeneralModel;
+use Application\PHPFramework\Validation\Collections\ValueValidationCollection;
+use Application\PHPFramework\Validation\IntegerValidation;
+
+class TaxCalculationReportGenerator extends GeneralModel{
 
    /**
     * @var Person
     */
-   private $person;
-   private $earnedIncome;
+   protected $person;
+   protected $earnedIncome;
    /**
     * @var BaseAmounts
     */
-   private $baseAmountsForCurrentYear;
+   protected $baseAmountsForCurrentYear;
 
-   public function __construct(Person $person, $earnedIncome, BaseAmounts $baseAmountsForCurrentYear){
-
-      $this->person                    = $person;
-      $this->earnedIncome              = $earnedIncome;
-      $this->baseAmountsForCurrentYear = $baseAmountsForCurrentYear;
+   public function __construct(array $data){
+       parent::__construct($data);
    }
 
    public function createTaxCalculationReport(){
@@ -71,5 +81,18 @@ class TaxCalculationReportGenerator{
       $taxCalculationReport->setLargestPossibleWorkTaxDeduction($largestPossibleWorkTaxDeduction);
 
       return $taxCalculationReport;
+   }
+
+   protected function setUpValidation(){
+      $this->_validation = new ValueValidationCollection(
+         array(
+            new IntegerValidation(
+               array(
+                  'genericName'  => 'årets beräknade inkomst efter att moms och kostnader har dragits av',
+                  'propertyName' => 'earnedIncome'
+               )
+            ),
+         )
+      );
    }
 } 

@@ -1,0 +1,48 @@
+Message: require(Application/IntegerValidation.php): failed to open stream: No such file or directory
+Occurred: 2015-06-12 09:52:37
+File: /Applications/MAMP/htdocs/SalaryCalculator/Application/PHPFramework/AutoLoader.php
+Line: 22
+Message: Application\PHPFramework\AutoLoader::Application\PHPFramework\{closure}(): Failed opening required 'Application/IntegerValidation.php' (include_path='.:/Applications/MAMP/bin/php/php5.5.10/lib/php')
+Occurred: 2015-06-12 09:52:37
+File: /Applications/MAMP/htdocs/SalaryCalculator/Application/PHPFramework/AutoLoader.php
+Line: 22
+Message: Cannot access private property Application\TaxCalculationReportGenerator::$person
+Occurred: 2015-06-12 09:57:06
+File: /Applications/MAMP/htdocs/SalaryCalculator/Application/PHPFramework/GeneralModel.php
+Line: 33
+Message: Undefined index: person
+Occurred: 2015-06-12 09:57:10
+File: /Applications/MAMP/htdocs/salarycalculator/index.php
+Line: 15
+Message: Uncaught exception 'Application\PHPFramework\ErrorHandling\Exceptions\ErrorException' with message 'Undefined index: person' in /Applications/MAMP/htdocs/salarycalculator/index.php:15
+Stack trace:
+#0 /Applications/MAMP/htdocs/salarycalculator/index.php(15): throwErrorException(8, 'Undefined index...', '/Applications/M...', 15, Array)
+#1 {main}
+  thrown
+Occurred: 2015-06-12 09:57:10
+File: /Applications/MAMP/htdocs/salarycalculator/index.php
+Line: 15
+Message: require(Application/PHPFramework/Collections/GeneralCollection.php): failed to open stream: No such file or directory
+Occurred: 2015-06-12 10:20:23
+File: /Applications/MAMP/htdocs/SalaryCalculator/Application/PHPFramework/AutoLoader.php
+Line: 22
+Message: Application\PHPFramework\AutoLoader::Application\PHPFramework\{closure}(): Failed opening required 'Application/PHPFramework/Collections/GeneralCollection.php' (include_path='.:/Applications/MAMP/bin/php/php5.5.10/lib/php')
+Occurred: 2015-06-12 10:20:23
+File: /Applications/MAMP/htdocs/SalaryCalculator/Application/PHPFramework/AutoLoader.php
+Line: 22
+Message: require(Application/PHPFramework/Collections/GeneralCollection.php): failed to open stream: No such file or directory
+Occurred: 2015-06-12 10:21:48
+File: /Applications/MAMP/htdocs/SalaryCalculator/Application/PHPFramework/AutoLoader.php
+Line: 22
+Message: Application\PHPFramework\AutoLoader::Application\PHPFramework\{closure}(): Failed opening required 'Application/PHPFramework/Collections/GeneralCollection.php' (include_path='.:/Applications/MAMP/bin/php/php5.5.10/lib/php')
+Occurred: 2015-06-12 10:21:48
+File: /Applications/MAMP/htdocs/SalaryCalculator/Application/PHPFramework/AutoLoader.php
+Line: 22
+Message: require(Application/PHPFramework/Collections/GeneralCollection.php): failed to open stream: No such file or directory
+Occurred: 2015-06-12 10:21:57
+File: /Applications/MAMP/htdocs/SalaryCalculator/Application/PHPFramework/AutoLoader.php
+Line: 22
+Message: Application\PHPFramework\AutoLoader::Application\PHPFramework\{closure}(): Failed opening required 'Application/PHPFramework/Collections/GeneralCollection.php' (include_path='.:/Applications/MAMP/bin/php/php5.5.10/lib/php')
+Occurred: 2015-06-12 10:21:57
+File: /Applications/MAMP/htdocs/SalaryCalculator/Application/PHPFramework/AutoLoader.php
+Line: 22

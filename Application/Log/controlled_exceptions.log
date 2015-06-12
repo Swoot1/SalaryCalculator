@@ -1,0 +1,160 @@
+Message: årets beräknade inkomst efter att moms och kostnader har dragits av måste bestå av siffror.
+Occurred: 2015-06-12 10:23:30
+File: /Applications/MAMP/htdocs/SalaryCalculator/Application/PHPFramework/Validation/IntegerValidation.php
+Line: 39
+Trace: #0 /Applications/MAMP/htdocs/SalaryCalculator/Application/PHPFramework/Validation/IntegerValidation.php(21): Application\PHPFramework\Validation\IntegerValidation->validateIsNumber('hejhej')
+#1 /Applications/MAMP/htdocs/SalaryCalculator/Application/PHPFramework/Validation/ValueValidation.php(40): Application\PHPFramework\Validation\IntegerValidation->objectValidation('hejhej')
+#2 /Applications/MAMP/htdocs/SalaryCalculator/Application/PHPFramework/Validation/Collections/ValueValidationCollection.php(29): Application\PHPFramework\Validation\ValueValidation->validate('hejhej')
+#3 /Applications/MAMP/htdocs/SalaryCalculator/Application/PHPFramework/GeneralModel.php(34): Application\PHPFramework\Validation\Collections\ValueValidationCollection->validate('earnedIncome', 'hejhej')
+#4 /Applications/MAMP/htdocs/SalaryCalculator/Application/PHPFramework/GeneralModel.php(25): Application\PHPFramework\GeneralModel->setPropertyValue('earnedIncome', 'hejhej')
+#5 /Applications/MAMP/htdocs/SalaryCalculator/Application/PHPFramework/GeneralModel.php(14): Application\PHPFramework\GeneralModel->setData(Array)
+#6 /Applications/MAMP/htdocs/SalaryCalculator/Application/TaxCalculationReportGenerator.php(30): Application\PHPFramework\GeneralModel->__construct(Array)
+#7 /Applications/MAMP/htdocs/salarycalculator/index.php(30): Application\TaxCalculationReportGenerator->__construct(Array)
+#8 {main}
+
+
+
+Message: årets beräknade inkomst efter att moms och kostnader har dragits av måste bestå av siffror.
+Occurred: 2015-06-12 10:25:14
+File: /Applications/MAMP/htdocs/SalaryCalculator/Application/PHPFramework/Validation/IntegerValidation.php
+Line: 39
+Trace: #0 /Applications/MAMP/htdocs/SalaryCalculator/Application/PHPFramework/Validation/IntegerValidation.php(21): Application\PHPFramework\Validation\IntegerValidation->validateIsNumber('hejhej')
+#1 /Applications/MAMP/htdocs/SalaryCalculator/Application/PHPFramework/Validation/ValueValidation.php(40): Application\PHPFramework\Validation\IntegerValidation->objectValidation('hejhej')
+#2 /Applications/MAMP/htdocs/SalaryCalculator/Application/PHPFramework/Validation/Collections/ValueValidationCollection.php(29): Application\PHPFramework\Validation\ValueValidation->validate('hejhej')
+#3 /Applications/MAMP/htdocs/SalaryCalculator/Application/PHPFramework/GeneralModel.php(34): Application\PHPFramework\Validation\Collections\ValueValidationCollection->validate('earnedIncome', 'hejhej')
+#4 /Applications/MAMP/htdocs/SalaryCalculator/Application/PHPFramework/GeneralModel.php(25): Application\PHPFramework\GeneralModel->setPropertyValue('earnedIncome', 'hejhej')
+#5 /Applications/MAMP/htdocs/SalaryCalculator/Application/PHPFramework/GeneralModel.php(14): Application\PHPFramework\GeneralModel->setData(Array)
+#6 /Applications/MAMP/htdocs/SalaryCalculator/Application/TaxCalculationReportGenerator.php(30): Application\PHPFramework\GeneralModel->__construct(Array)
+#7 /Applications/MAMP/htdocs/salarycalculator/index.php(30): Application\TaxCalculationReportGenerator->__construct(Array)
+#8 {main}
+
+
+
+Message: årets beräknade inkomst efter att moms och kostnader har dragits av måste bestå av siffror.
+Occurred: 2015-06-12 10:28:07
+File: /Applications/MAMP/htdocs/SalaryCalculator/Application/PHPFramework/Validation/IntegerValidation.php
+Line: 39
+Trace: #0 /Applications/MAMP/htdocs/SalaryCalculator/Application/PHPFramework/Validation/IntegerValidation.php(21): Application\PHPFramework\Validation\IntegerValidation->validateIsNumber('hejhej')
+#1 /Applications/MAMP/htdocs/SalaryCalculator/Application/PHPFramework/Validation/ValueValidation.php(40): Application\PHPFramework\Validation\IntegerValidation->objectValidation('hejhej')
+#2 /Applications/MAMP/htdocs/SalaryCalculator/Application/PHPFramework/Validation/Collections/ValueValidationCollection.php(29): Application\PHPFramework\Validation\ValueValidation->validate('hejhej')
+#3 /Applications/MAMP/htdocs/SalaryCalculator/Application/PHPFramework/GeneralModel.php(34): Application\PHPFramework\Validation\Collections\ValueValidationCollection->validate('earnedIncome', 'hejhej')
+#4 /Applications/MAMP/htdocs/SalaryCalculator/Application/PHPFramework/GeneralModel.php(25): Application\PHPFramework\GeneralModel->setPropertyValue('earnedIncome', 'hejhej')
+#5 /Applications/MAMP/htdocs/SalaryCalculator/Application/PHPFramework/GeneralModel.php(14): Application\PHPFramework\GeneralModel->setData(Array)
+#6 /Applications/MAMP/htdocs/SalaryCalculator/Application/TaxCalculationReportGenerator.php(30): Application\PHPFramework\GeneralModel->__construct(Array)
+#7 /Applications/MAMP/htdocs/salarycalculator/index.php(30): Application\TaxCalculationReportGenerator->__construct(Array)
+#8 {main}
+
+
+
+Message: årets beräknade inkomst efter att moms och kostnader har dragits av måste bestå av siffror.
+Occurred: 2015-06-12 10:28:25
+File: /Applications/MAMP/htdocs/SalaryCalculator/Application/PHPFramework/Validation/IntegerValidation.php
+Line: 39
+Trace: #0 /Applications/MAMP/htdocs/SalaryCalculator/Application/PHPFramework/Validation/IntegerValidation.php(21): Application\PHPFramework\Validation\IntegerValidation->validateIsNumber('hejhej')
+#1 /Applications/MAMP/htdocs/SalaryCalculator/Application/PHPFramework/Validation/ValueValidation.php(40): Application\PHPFramework\Validation\IntegerValidation->objectValidation('hejhej')
+#2 /Applications/MAMP/htdocs/SalaryCalculator/Application/PHPFramework/Validation/Collections/ValueValidationCollection.php(29): Application\PHPFramework\Validation\ValueValidation->validate('hejhej')
+#3 /Applications/MAMP/htdocs/SalaryCalculator/Application/PHPFramework/GeneralModel.php(34): Application\PHPFramework\Validation\Collections\ValueValidationCollection->validate('earnedIncome', 'hejhej')
+#4 /Applications/MAMP/htdocs/SalaryCalculator/Application/PHPFramework/GeneralModel.php(25): Application\PHPFramework\GeneralModel->setPropertyValue('earnedIncome', 'hejhej')
+#5 /Applications/MAMP/htdocs/SalaryCalculator/Application/PHPFramework/GeneralModel.php(14): Application\PHPFramework\GeneralModel->setData(Array)
+#6 /Applications/MAMP/htdocs/SalaryCalculator/Application/TaxCalculationReportGenerator.php(30): Application\PHPFramework\GeneralModel->__construct(Array)
+#7 /Applications/MAMP/htdocs/salarycalculator/index.php(30): Application\TaxCalculationReportGenerator->__construct(Array)
+#8 {main}
+
+
+
+Message: årets beräknade inkomst efter att moms och kostnader har dragits av måste bestå av siffror.
+Occurred: 2015-06-12 10:28:39
+File: /Applications/MAMP/htdocs/SalaryCalculator/Application/PHPFramework/Validation/IntegerValidation.php
+Line: 39
+Trace: #0 /Applications/MAMP/htdocs/SalaryCalculator/Application/PHPFramework/Validation/IntegerValidation.php(21): Application\PHPFramework\Validation\IntegerValidation->validateIsNumber('hejhej')
+#1 /Applications/MAMP/htdocs/SalaryCalculator/Application/PHPFramework/Validation/ValueValidation.php(40): Application\PHPFramework\Validation\IntegerValidation->objectValidation('hejhej')
+#2 /Applications/MAMP/htdocs/SalaryCalculator/Application/PHPFramework/Validation/Collections/ValueValidationCollection.php(29): Application\PHPFramework\Validation\ValueValidation->validate('hejhej')
+#3 /Applications/MAMP/htdocs/SalaryCalculator/Application/PHPFramework/GeneralModel.php(34): Application\PHPFramework\Validation\Collections\ValueValidationCollection->validate('earnedIncome', 'hejhej')
+#4 /Applications/MAMP/htdocs/SalaryCalculator/Application/PHPFramework/GeneralModel.php(25): Application\PHPFramework\GeneralModel->setPropertyValue('earnedIncome', 'hejhej')
+#5 /Applications/MAMP/htdocs/SalaryCalculator/Application/PHPFramework/GeneralModel.php(14): Application\PHPFramework\GeneralModel->setData(Array)
+#6 /Applications/MAMP/htdocs/SalaryCalculator/Application/TaxCalculationReportGenerator.php(30): Application\PHPFramework\GeneralModel->__construct(Array)
+#7 /Applications/MAMP/htdocs/salarycalculator/index.php(30): Application\TaxCalculationReportGenerator->__construct(Array)
+#8 {main}
+
+
+
+Message: årets beräknade inkomst efter att moms och kostnader har dragits av måste bestå av siffror.
+Occurred: 2015-06-12 10:29:47
+File: /Applications/MAMP/htdocs/SalaryCalculator/Application/PHPFramework/Validation/IntegerValidation.php
+Line: 39
+Trace: #0 /Applications/MAMP/htdocs/SalaryCalculator/Application/PHPFramework/Validation/IntegerValidation.php(21): Application\PHPFramework\Validation\IntegerValidation->validateIsNumber('hejhej')
+#1 /Applications/MAMP/htdocs/SalaryCalculator/Application/PHPFramework/Validation/ValueValidation.php(40): Application\PHPFramework\Validation\IntegerValidation->objectValidation('hejhej')
+#2 /Applications/MAMP/htdocs/SalaryCalculator/Application/PHPFramework/Validation/Collections/ValueValidationCollection.php(29): Application\PHPFramework\Validation\ValueValidation->validate('hejhej')
+#3 /Applications/MAMP/htdocs/SalaryCalculator/Application/PHPFramework/GeneralModel.php(34): Application\PHPFramework\Validation\Collections\ValueValidationCollection->validate('earnedIncome', 'hejhej')
+#4 /Applications/MAMP/htdocs/SalaryCalculator/Application/PHPFramework/GeneralModel.php(25): Application\PHPFramework\GeneralModel->setPropertyValue('earnedIncome', 'hejhej')
+#5 /Applications/MAMP/htdocs/SalaryCalculator/Application/PHPFramework/GeneralModel.php(14): Application\PHPFramework\GeneralModel->setData(Array)
+#6 /Applications/MAMP/htdocs/SalaryCalculator/Application/TaxCalculationReportGenerator.php(30): Application\PHPFramework\GeneralModel->__construct(Array)
+#7 /Applications/MAMP/htdocs/salarycalculator/index.php(30): Application\TaxCalculationReportGenerator->__construct(Array)
+#8 {main}
+
+
+
+Message: årets beräknade inkomst efter att moms och kostnader har dragits av måste bestå av siffror.
+Occurred: 2015-06-12 10:30:41
+File: /Applications/MAMP/htdocs/SalaryCalculator/Application/PHPFramework/Validation/IntegerValidation.php
+Line: 39
+Trace: #0 /Applications/MAMP/htdocs/SalaryCalculator/Application/PHPFramework/Validation/IntegerValidation.php(21): Application\PHPFramework\Validation\IntegerValidation->validateIsNumber('hejhej')
+#1 /Applications/MAMP/htdocs/SalaryCalculator/Application/PHPFramework/Validation/ValueValidation.php(40): Application\PHPFramework\Validation\IntegerValidation->objectValidation('hejhej')
+#2 /Applications/MAMP/htdocs/SalaryCalculator/Application/PHPFramework/Validation/Collections/ValueValidationCollection.php(29): Application\PHPFramework\Validation\ValueValidation->validate('hejhej')
+#3 /Applications/MAMP/htdocs/SalaryCalculator/Application/PHPFramework/GeneralModel.php(34): Application\PHPFramework\Validation\Collections\ValueValidationCollection->validate('earnedIncome', 'hejhej')
+#4 /Applications/MAMP/htdocs/SalaryCalculator/Application/PHPFramework/GeneralModel.php(25): Application\PHPFramework\GeneralModel->setPropertyValue('earnedIncome', 'hejhej')
+#5 /Applications/MAMP/htdocs/SalaryCalculator/Application/PHPFramework/GeneralModel.php(14): Application\PHPFramework\GeneralModel->setData(Array)
+#6 /Applications/MAMP/htdocs/SalaryCalculator/Application/TaxCalculationReportGenerator.php(30): Application\PHPFramework\GeneralModel->__construct(Array)
+#7 /Applications/MAMP/htdocs/salarycalculator/index.php(30): Application\TaxCalculationReportGenerator->__construct(Array)
+#8 {main}
+
+
+
+Message: årets beräknade inkomst efter att moms och kostnader har dragits av måste bestå av siffror.
+Occurred: 2015-06-12 10:30:45
+File: /Applications/MAMP/htdocs/SalaryCalculator/Application/PHPFramework/Validation/IntegerValidation.php
+Line: 39
+Trace: #0 /Applications/MAMP/htdocs/SalaryCalculator/Application/PHPFramework/Validation/IntegerValidation.php(21): Application\PHPFramework\Validation\IntegerValidation->validateIsNumber('hejhej')
+#1 /Applications/MAMP/htdocs/SalaryCalculator/Application/PHPFramework/Validation/ValueValidation.php(40): Application\PHPFramework\Validation\IntegerValidation->objectValidation('hejhej')
+#2 /Applications/MAMP/htdocs/SalaryCalculator/Application/PHPFramework/Validation/Collections/ValueValidationCollection.php(29): Application\PHPFramework\Validation\ValueValidation->validate('hejhej')
+#3 /Applications/MAMP/htdocs/SalaryCalculator/Application/PHPFramework/GeneralModel.php(34): Application\PHPFramework\Validation\Collections\ValueValidationCollection->validate('earnedIncome', 'hejhej')
+#4 /Applications/MAMP/htdocs/SalaryCalculator/Application/PHPFramework/GeneralModel.php(25): Application\PHPFramework\GeneralModel->setPropertyValue('earnedIncome', 'hejhej')
+#5 /Applications/MAMP/htdocs/SalaryCalculator/Application/PHPFramework/GeneralModel.php(14): Application\PHPFramework\GeneralModel->setData(Array)
+#6 /Applications/MAMP/htdocs/SalaryCalculator/Application/TaxCalculationReportGenerator.php(30): Application\PHPFramework\GeneralModel->__construct(Array)
+#7 /Applications/MAMP/htdocs/salarycalculator/index.php(30): Application\TaxCalculationReportGenerator->__construct(Array)
+#8 {main}
+
+
+
+Message: årets beräknade inkomst efter att moms och kostnader har dragits av måste bestå av siffror.
+Occurred: 2015-06-12 10:31:06
+File: /Applications/MAMP/htdocs/SalaryCalculator/Application/PHPFramework/Validation/IntegerValidation.php
+Line: 39
+Trace: #0 /Applications/MAMP/htdocs/SalaryCalculator/Application/PHPFramework/Validation/IntegerValidation.php(21): Application\PHPFramework\Validation\IntegerValidation->validateIsNumber('hejhej')
+#1 /Applications/MAMP/htdocs/SalaryCalculator/Application/PHPFramework/Validation/ValueValidation.php(40): Application\PHPFramework\Validation\IntegerValidation->objectValidation('hejhej')
+#2 /Applications/MAMP/htdocs/SalaryCalculator/Application/PHPFramework/Validation/Collections/ValueValidationCollection.php(29): Application\PHPFramework\Validation\ValueValidation->validate('hejhej')
+#3 /Applications/MAMP/htdocs/SalaryCalculator/Application/PHPFramework/GeneralModel.php(34): Application\PHPFramework\Validation\Collections\ValueValidationCollection->validate('earnedIncome', 'hejhej')
+#4 /Applications/MAMP/htdocs/SalaryCalculator/Application/PHPFramework/GeneralModel.php(25): Application\PHPFramework\GeneralModel->setPropertyValue('earnedIncome', 'hejhej')
+#5 /Applications/MAMP/htdocs/SalaryCalculator/Application/PHPFramework/GeneralModel.php(14): Application\PHPFramework\GeneralModel->setData(Array)
+#6 /Applications/MAMP/htdocs/SalaryCalculator/Application/TaxCalculationReportGenerator.php(30): Application\PHPFramework\GeneralModel->__construct(Array)
+#7 /Applications/MAMP/htdocs/salarycalculator/index.php(30): Application\TaxCalculationReportGenerator->__construct(Array)
+#8 {main}
+
+
+
+Message: årets beräknade inkomst efter att moms och kostnader har dragits av måste bestå av siffror.
+Occurred: 2015-06-12 10:31:26
+File: /Applications/MAMP/htdocs/SalaryCalculator/Application/PHPFramework/Validation/IntegerValidation.php
+Line: 39
+Trace: #0 /Applications/MAMP/htdocs/SalaryCalculator/Application/PHPFramework/Validation/IntegerValidation.php(21): Application\PHPFramework\Validation\IntegerValidation->validateIsNumber('hejhej')
+#1 /Applications/MAMP/htdocs/SalaryCalculator/Application/PHPFramework/Validation/ValueValidation.php(40): Application\PHPFramework\Validation\IntegerValidation->objectValidation('hejhej')
+#2 /Applications/MAMP/htdocs/SalaryCalculator/Application/PHPFramework/Validation/Collections/ValueValidationCollection.php(29): Application\PHPFramework\Validation\ValueValidation->validate('hejhej')
+#3 /Applications/MAMP/htdocs/SalaryCalculator/Application/PHPFramework/GeneralModel.php(34): Application\PHPFramework\Validation\Collections\ValueValidationCollection->validate('earnedIncome', 'hejhej')
+#4 /Applications/MAMP/htdocs/SalaryCalculator/Application/PHPFramework/GeneralModel.php(25): Application\PHPFramework\GeneralModel->setPropertyValue('earnedIncome', 'hejhej')
+#5 /Applications/MAMP/htdocs/SalaryCalculator/Application/PHPFramework/GeneralModel.php(14): Application\PHPFramework\GeneralModel->setData(Array)
+#6 /Applications/MAMP/htdocs/SalaryCalculator/Application/TaxCalculationReportGenerator.php(30): Application\PHPFramework\GeneralModel->__construct(Array)
+#7 /Applications/MAMP/htdocs/salarycalculator/index.php(30): Application\TaxCalculationReportGenerator->__construct(Array)
+#8 {main}
+
+
+

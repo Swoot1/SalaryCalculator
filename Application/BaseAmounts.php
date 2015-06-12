@@ -1,5 +1,7 @@
 <?php
 
+namespace Application;
+
 class BaseAmounts{
    /**
     * @var $priceBaseAmountForCurrentYear

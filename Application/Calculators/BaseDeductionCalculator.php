@@ -1,5 +1,9 @@
 <?php
 
+namespace Application\Calculators;
+use Application\BaseAmounts;
+use Application\TaxCalculationReport;
+
 /**
  * https://lagen.nu/begrepp/Grundavdrag
  * Class BaseDeductionCalculator

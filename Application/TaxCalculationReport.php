@@ -1,9 +1,10 @@
 <?php
 
+namespace Application;
 
 use Application\PHPFramework\GeneralModel;
 
-class TaxCalculationReport extends GeneralModel {
+class TaxCalculationReport extends GeneralModel{
    protected $person;
    protected $earnedIncome;
    protected $establishedEarnedIncome;
@@ -161,5 +162,9 @@ class TaxCalculationReport extends GeneralModel {
 
    public function getMunicipalityTaxPercentage(){
       return $this->person->getMunicipalityTaxPercentage();
+   }
+
+   protected function setUpValidation(){
+      // TODO: Implement setUpValidation() method.
    }
 }

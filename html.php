@@ -7,7 +7,7 @@ header('Content-Type: text/html');
 echo '<!DOCTYPE html>
 <html ng-app="salaryCalculator" class="background-image">
 <head>
-    <title>Löneuträknare</title>
+    <title>Räkna ut konsultarvode per timme</title>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width"/>
     <link href="http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300|Playfair+Display:400italic" rel="stylesheet" type="text/css" />
@@ -19,14 +19,14 @@ echo '<!DOCTYPE html>
     <link href="Public/css/custom.css" type="text/css" rel="stylesheet"/>
 </head>
 <body>
+<div class="row">
+   <div class="large-12 columns">
+   <span alertbox></span>
+   </div>
+</div>
 <div class="row page_wrap">
     <div class="large-12 columns">
          <div id="content">
-            <div class="row">
-                <div class="large-12 columns">
-                  <span alertbox></span>
-                </div>
-             </div>
              <div ng-class="{row:\'enabled\', container : content.setContainerClass}">
                  <div class="large-12 columns" ng-view>
                  </div>
@@ -50,5 +50,6 @@ echo '<!DOCTYPE html>
 <script type="text/javascript" src="Public/Scripts/Factories/SalaryCalculationFactory.js"></script>
 <script type="text/javascript" src="Public/Scripts/Controllers/SalaryCalculatorController.js"></script>
 <script type="text/javascript" src="Public/Scripts/Filters/MoneyFilter.js"></script>
+<script type="text/javascript" src="Public/Scripts/Directories/AlertBox.js"></script>
 </body>
 </html>';

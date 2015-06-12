@@ -1,5 +1,8 @@
 <?php
 
+namespace Application\Calculators;
+
+use Application\TaxCalculationReport;
 
 class StateIncomeTaxCalculator{
 

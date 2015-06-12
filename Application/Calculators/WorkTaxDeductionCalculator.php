@@ -1,5 +1,10 @@
 <?php
 
+namespace Application\Calculators;
+
+use Application\BaseAmounts;
+use Application\Person;
+use Application\TaxCalculationReport;
 
 class WorkTaxDeductionCalculator{
 

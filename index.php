@@ -1,32 +1,72 @@
 <?php
+use Application\BaseAmounts;
+use Application\Person;
+use Application\PHPFramework\ErrorHandling\ErrorHTTPStatusCodeFactory;
+use Application\PHPFramework\ErrorHandling\Exceptions\ApplicationException;
+use Application\PHPFramework\ErrorHandling\Exceptions\ControlledException;
 use Application\PHPFramework\JsonParser;
+use Application\PHPFramework\Response\Factories\ResponseFactory;
+use Application\TaxCalculationReportGenerator;
 
-require_once 'Application/PHPFramework/IToJSON.php';
-require_once 'Application/PHPFramework/GeneralModel.php';
-require_once 'Application/Person.php';
-require_once 'Application/BaseAmounts.php';
-require_once 'Application/Calculators/BaseDeductionCalculator.php';
-require_once 'Application/Calculators/EstablishedBusinessExcessCalculator.php';
-require_once 'Application/Calculators/GeneralRetirementCalculator.php';
-require_once 'Application/Calculators/MunicipalityTaxCalculator.php';
-require_once 'Application/Calculators/OwnFeesCalculator.php';
-require_once 'Application/Calculators/StateIncomeTaxCalculator.php';
-require_once 'Application/Calculators/TaxableIncomeCalculator.php';
-require_once 'Application/TaxCalculationReport.php';
-require_once 'Application/TaxCalculationReportGenerator.php';
-require_once 'Application/Calculators/WorkTaxDeductionCalculator.php';
-require_once 'Application/Calculators/WorkTaxDeductionCalculatorForPersonSixtySixYearsOrYounger.php';
-require_once 'Application/Calculators/WorkTaxDeductionCalculatorForPersonSixtySevenYearsOrOlder.php';
-require_once 'Application/PHPFramework/JsonParser.php';
+$GLOBALS['$ROOT_DIR'] = dirname(__FILE__);
 
-$jsonParser = new JsonParser();
-$result     = $jsonParser->parse(file_get_contents('php://input'));
-$taxCalculationReportGenerator = new TaxCalculationReportGenerator(new Person(array('birthYear' => $result['person']['birthYear'], 'municipalityTaxPercentage' => $result['person']['municipalityTaxPercentage'])), $result['earnedIncome'], new BaseAmounts());
-$taxCalculationReport = $taxCalculationReportGenerator->createTaxCalculationReport();
+require_once 'Application/PHPFramework/Configurations/Configuration.php';
 
-$protocol = isset($_SERVER["SERVER_PROTOCOL"]) ? $_SERVER['SERVER_PROTOCOL'] : 'HTTP/1.0';
-header(sprintf("%s %s", $protocol, '200 OK'), true, 200);
-header('Charset: UTF-8');
-header('Content-Type: application/json');
+$responseFactory = new ResponseFactory();
+$response        = $responseFactory->build();
 
-echo json_encode($taxCalculationReport->toArray(), JSON_UNESCAPED_UNICODE);
+try{
+   $jsonParser = new JsonParser();
+   $result     = $jsonParser->parse(file_get_contents('php://input'));
+
+   if (!array_key_exists('person', $result)){
+      throw new ApplicationException('Ange födelseår, kommun och församling.');
+   }
+
+   if (!array_key_exists('earnedIncome', $result)){
+      throw new ApplicationException('Ange årets beräknade inkomst efter att moms och kostnader har dragits av.');
+   }
+
+   $taxCalculationReportGenerator = new TaxCalculationReportGenerator(array('person' => new Person($result['person']), 'earnedIncome' => $result['earnedIncome'], 'baseAmountsForCurrentYear' => new BaseAmounts()));
+   $taxCalculationReport          = $taxCalculationReportGenerator->createTaxCalculationReport();
+
+   $response->setResponseData($taxCalculationReport);
+
+} catch (Exception $exception){
+   $errorHTTPStatusCodeFactory = new ErrorHTTPStatusCodeFactory($exception);
+   $HTTPStatusCode             = $errorHTTPStatusCodeFactory->getHTTPStatusCode();
+   $responseFactory            = new ResponseFactory();
+   $response                   = $responseFactory->build();
+   $response->setStatusCode($HTTPStatusCode);
+
+   $date       = new DateTime();
+   $dateString = $date->format('Y-m-d H:i:s');
+   $logText    = sprintf("Message: %s\nOccurred: %s\nFile: %s\nLine: %s\nTrace: %s\n\n\n\n",
+                         $exception->getMessage(),
+                         $dateString,
+                         $exception->getFile(),
+                         $exception->getLine(),
+                         $exception->getTraceAsString());
+
+   if ($exception instanceof ControlledException){
+      error_log($logText, 3, CONTROLLED_EXCEPTIONS_LOG_PATH);
+      $response->setResponseData(
+               new Application\PHPFramework\ErrorHandling\ErrorTrace(
+                  array(
+                     'message' => $exception->getMessage()
+                  )
+               )
+      );
+   } else{
+      error_log($logText, 3, UNCONTROLLED_EXCEPTIONS_LOG_PATH);
+      $response->setResponseData(
+               new Application\PHPFramework\ErrorHandling\ErrorTrace(
+                  array(
+                     'message' => 'Okänt fel.'
+                  )
+               )
+      );
+   }
+}
+
+$response->sendResponse();

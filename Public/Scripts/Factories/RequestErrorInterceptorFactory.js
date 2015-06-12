@@ -4,10 +4,12 @@
       var requestErrorInterceptor = {
          requestError: function (response) {
             requestErrorInterceptor.writeErrorToConsole(response.data.data);
+            debugger; // TODO
             requestErrorInterceptor.displayAlertBox(response);
             return deferred.promise;
          },
          responseError: function (response) {
+            debugger; // TODO
             requestErrorInterceptor.writeErrorToConsole(response.data.data);
             requestErrorInterceptor.displayAlertBox(response);
             return deferred.promise;
@@ -31,7 +33,7 @@
          },
 
          displayAlertBox: function (response) {
-            var message = response.data && response.data.data.message ? response.data.data.message : 'Okänt fel.';
+            var message = response.data && response.data.data.message ? response.data.data.message.charAt(0).toUpperCase() + response.data.data.message.slice(1) : 'Okänt fel.';
             alertBoxService.addAlertBox('alert', message);
          }
       };
