@@ -6,18 +6,18 @@
 
       $scope.personBirthYearCollection =
          (function () {
-         var years = [];
-         var currentYear = new Date().getFullYear();
-         var year = currentYear - 18;
-         var birthYearForOneHundredYearsOld = currentYear - 100;
+            var years = [];
+            var currentYear = new Date().getFullYear();
+            var year = currentYear - 18;
+            var birthYearForOneHundredYearsOld = currentYear - 100;
 
-         while (year >= birthYearForOneHundredYearsOld) {
-            years.push(year);
-            year--;
-         }
+            while (year >= birthYearForOneHundredYearsOld) {
+               years.push(year);
+               year--;
+            }
 
-         return years;
-      })();
+            return years;
+         })();
       var defaultAge = 35;
       var currentYear = new Date().getFullYear();
       var defaultBirthYear = (currentYear - defaultAge);
@@ -46,7 +46,7 @@
       $scope.calculate = function () {
          clearTimeout(timeoutHandler);
 
-         timeoutHandler = setTimeout(function(){
+         timeoutHandler = setTimeout(function () {
             var salaryCalculation = new SalaryCalculationFactory($scope.salaryCalculation);
             salaryCalculation.$save({}, function (responseData) {
                $scope.salaryCalculation = responseData;
@@ -68,22 +68,22 @@
          return  monthlyWage;
       };
 
-      var calculateMonthlyWageBeforeTaxesAndProfit = function(){
+      var calculateMonthlyWageBeforeTaxesAndProfit = function () {
          var numberOfMonthsInAYear = 12;
 
          return $scope.salaryCalculation.remainingAmountAfterTaxes / numberOfMonthsInAYear;
       };
 
-      var calculateMonthlyWageBeforeTaxesAndAfterProfit = function(){
+      var calculateMonthlyWageBeforeTaxesAndAfterProfit = function () {
          return calculateMonthlyWageBeforeTaxesAndProfit() - $scope.calculateProfitPerMonth()
       };
 
-      var calculateServicePension = function(){
+      var calculateServicePension = function () {
          var decimalPercentageOfSalaryForServicePension = 0.05, servicePension;
 
-         if($scope.test.hasServicePension){
+         if ($scope.test.hasServicePension) {
             servicePension = (calculateMonthlyWageBeforeTaxesAndAfterProfit() / (1 + getVacationPercentageOfSalaryInDecimalForm())) * decimalPercentageOfSalaryForServicePension;
-         }else{
+         } else {
             servicePension = 0;
          }
          return servicePension;
@@ -177,17 +177,19 @@
          }
 
          $scope.salaryCalculation.person.municipalityTaxPercentage = municipalityTaxPercentage;
+         $scope.calculate();
       };
 
       setMunicipalityTax();
 
-      var setTownShipIndexToZero = function(){
+      var setTownShipIndexToZero = function () {
          $scope.municipalityTaxInformation.townshipIndex = 0;
          setMunicipalityTax();
       };
 
       $scope.$watch('municipalityTaxInformation.townshipIndex', setMunicipalityTax);
-      $scope.$watch('municipalityTaxInformation.municipalityIndex', setTownShipIndexToZero);
       $scope.$watch('municipalityTaxInformation.isMemberOfSwedishChurch', setMunicipalityTax);
+      $scope.$watch('municipalityTaxInformation.municipalityIndex', setTownShipIndexToZero);
+
    }]);
 })();
