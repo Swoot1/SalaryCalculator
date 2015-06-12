@@ -31,10 +31,15 @@ echo '<!DOCTYPE html>
                  <div class="large-12 columns" ng-view>
                  </div>
              </div>
+             <div class="row footer">
+                <div class="large-6 columns right">
+                  <p class="right">Eventuella fel rapporteras till yoyoyowazzup[snabel-a]hotmail.com</p>
+               </div>
+               <div class="large-6 columns">
+                 <p>Senast uppdaterad juni 2015.</p>
+               </div>
+            </div>
          </div>
-      </div>
-      <div class="row" >
-         <div class="large-6 columns">
       </div>
 </div>
 <script type="text/javascript" src="Public/Scripts/Vendor/Angular/angular.js"></script>
