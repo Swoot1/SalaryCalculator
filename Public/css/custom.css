@@ -273,3 +273,7 @@ input.shopping-cart-quantity {
 .footer p {
     color: #222;
 }
+
+.full-width-range {
+    width:100%;
+}

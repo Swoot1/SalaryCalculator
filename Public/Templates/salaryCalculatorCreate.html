@@ -12,7 +12,7 @@
         </p>
         <form ng-model="salaryCalculation">
             <label>
-                Vilket år är du född?
+                Vilket år är du född? <span class="link birth-year-message" ng-click="showMessage('birth-year-message')">Mer info</span>
                 <select ng-model="salaryCalculation.person.birthYear" ng-change="calculate()">
                     <option ng-repeat="personBirthYear in personBirthYearCollection"
                             ng-selected="{{personBirthYear === salaryCalculation.person.birthYear}}"
@@ -22,7 +22,7 @@
             </label>
 
             <label>
-                I vilken kommun bor du?
+                I vilken kommun bor du? <span class="link municipality-message" ng-click="showMessage('municipality-message')">Mer info</span>
                 <select ng-model="municipalityTaxInformation.municipalityIndex"
                         ng-change="setTownships(municipalityTaxInformation.municipalityIndex)">
                     <option ng-repeat="municipality in municipalities"
@@ -32,7 +32,7 @@
                 </select>
             </label>
             <label>
-                Vilken församling tillhör du?
+                Vilken församling tillhör du? <span class="link township-message" ng-click="showMessage('township-message')">Mer info</span>
                 <select ng-model="municipalityTaxInformation.townshipIndex">
                     <option ng-repeat="township in townships"
                             ng-selected="{{$index === municipalityTaxInformation.townshipIndex}}" value="{{$index}}">
@@ -40,7 +40,8 @@
                     </option>
                 </select>
             </label>
-            <label>Är du medlem i Svenska Kyrkan?</label>
+            <label>Är du medlem i Svenska Kyrkan? <span class="link church-member-message" ng-click="showMessage('church-member-message')">Mer info</span>
+            </label>
             <label>
                 <input type="radio" ng-model="municipalityTaxInformation.isMemberOfSwedishChurch"
                        name="isMemberOfSwedishChurch" ng-value="{{true}}"> Ja
@@ -50,32 +51,32 @@
                        name="isMemberOfSwedishChurch" ng-value="{{false}}"> Nej
             </label>
             <label>
-                Hur stor del av din arbetstid kan du fakturera?
-                <input type="range" ng-model="test.billableTimePercentage" ng-change="calculate()" min="10" max="100"
+                Hur stor del av din arbetstid kan du fakturera? <span class="link billable-time-percentage-message" ng-click="showMessage('billable-time-percentage-message')">Mer info</span>
+                <input type="range" class="full-width-range" ng-model="test.billableTimePercentage" min="10" max="100"
                        step="5"/>
 
                 <p>{{test.billableTimePercentage}} %</p>
             </label>
             <label>
-                Hur stor procent av inkomsten ska återinvesteras i företaget?
-                <input type="range" ng-model="test.profitPercentageOfIncome" min="0" max="100" step="5"/>
+                Hur stor procent av inkomsten ska återinvesteras i företaget? <span class="link profit-percentage-of-income-message" ng-click="showMessage('profit-percentage-of-income-message')">Mer info</span>
+                <input type="range" class="full-width-range" ng-model="test.profitPercentageOfIncome" min="0" max="100" step="5"/>
 
                 <p>{{test.profitPercentageOfIncome}}%</p>
             </label>
             <label>
                 Hur många semesterdagar vill du ta ut per år?
-                <input type="range" ng-model="test.numberOfVacationDaysInAYear" min="0" max="50" step="1"/>
+                <input type="range" class="full-width-range" ng-model="test.numberOfVacationDaysInAYear" min="0" max="50" step="1"/>
 
                 <p> {{test.numberOfVacationDaysInAYear}} </p>
             </label>
             <label>
-                Vill du avsätta 5% av din lön till din tjänstepension?
+                Vill du avsätta 5% av din lön till din tjänstepension? <span class="link service-pension-message" ng-click="showMessage('service-pension-message')">Mer info</span>
             </label>
             <label><input type="radio" ng-model="test.hasServicePension" name="hasServicePension" ng-value="{{true}}"/> Ja</label>
             <label><input type="radio" ng-model="test.hasServicePension" name="hasServicePension" ng-value="{{false}}"/> Nej</label>
             <label>
                 Årets beräknade inkomst efter att moms och kostnader har dragits av.
-                <input type="range" style="width:100%;" ng-model="salaryCalculation.earnedIncome" min="200000"
+                <input class="full-width-range" type="range" ng-model="salaryCalculation.earnedIncome" min="100000"
                        max="2000000" step="10000" ng-change="calculate()"/>
             </label>
 

@@ -46,6 +46,8 @@ echo '<!DOCTYPE html>
 <script type="text/javascript" src="Public/Scripts/Vendor/Angular/angular-messages.js"></script>
 <script type="text/javascript" src="Public/Scripts/Vendor/Angular/Plugins/angular-resource.js"></script>
 <script type="text/javascript" src="Public/Scripts/Vendor/Angular/Plugins/angular-route.js"></script>
+<script type="text/javascript" src="Public/css/Foundation/js/vendor/jquery.js"></script>
+<script type="text/javascript" src="Public/Scripts/Vendor/notify.min.js"></script>
 <script type="text/javascript" src="Public/Scripts/Vendor/fastclick.js"></script>
 <script type="text/javascript" src="Public/Scripts/app.js"></script>
 <script type="text/javascript" src="Public/Scripts/Services/AlertBoxService.js"></script>

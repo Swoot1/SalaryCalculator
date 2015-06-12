@@ -191,5 +191,32 @@
       $scope.$watch('municipalityTaxInformation.isMemberOfSwedishChurch', setMunicipalityTax);
       $scope.$watch('municipalityTaxInformation.municipalityIndex', setTownShipIndexToZero);
 
+      $scope.showMessage = function(messageName){
+         var messageMap = {
+            'birth-year-message' : 'Ditt födelseår avgör hur stor egenavgiften är, vilken skattereduktion för pension du \nkan göra och hur stort jobbskatteavdrag du kan göra.',
+            'municipality-message' : 'Varje kommun bestämmer själv hur stor den kommunala skatten för kommunens\n invånare ska vara. Skatten ligger vanligtvis mellan 29.19% upp till och med 34.7% \nav inkomsten.',
+            'township-message': 'Den församling du tillhör avgör hur stor begravningsavgift du ska betala. \nBegravningsavgift betalas av alla som är folkbokförda i Sverige.' +
+               '\n\nDen genomsnittliga begravningsavgiften 2015 var 0.22%.',
+            'church-member-message' : 'Om du är medlem i Svenska kyrkan betalar du en kyrkoavgift.' +
+               '\n\nTrossamfunden bestämmer själva hur hög avgiften ska vara. \nI dagsläget har de flesta trossamfund en avgift på 1%.',
+            'billable-time-percentage-message': 'Fundera över hur många procent av dina arbetstimmar som du kan debitera. \nÄr 60% av tiden rimligt? ' +
+               '\n\nKom ihåg att det går åt tid till saker som administration, kundbesök och \nkompetensutveckling.',
+            'profit-percentage-of-income-message' : 'För att ditt företag ska kunna växa är det viktigt att du även sparar \nen summa som vinst i företaget.\n\n' +
+               'En buffert kan komma väl till hands vid oväntade utgifter eller när det \n blir ett längre uppehåll mellan två jobb.',
+            'service-pension-message' : 'De som är anställda och har kollektivavtal får tjänstepension. Ungefär 5 procent \n' +
+               'av lönen avsätts dit och när du är pensionär kan den motsvara 15–20 procent av lönen. '
+         };
+
+         if(messageMap[messageName]){
+            $('.' + messageName).notify(messageMap[messageName] + '\n\n Klicka för att stänga', {
+               elementPosition: 'top middle',
+               className: 'info',
+               autoHide:false,
+               clickToHide: true
+            });
+         }
+
+      };
+
    }]);
 })();
