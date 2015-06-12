@@ -11,13 +11,6 @@ class Person extends GeneralModel{
    protected $birthYear = 1980;
    protected $municipalityTaxPercentage = 32;
 
-   /**
-    * @return mixed
-    */
-   public function getBirthYear(){
-      return $this->birthYear;
-   }
-
    public function getAge(){
       return $this->getCurrentYear() - $this->birthYear;
    }
