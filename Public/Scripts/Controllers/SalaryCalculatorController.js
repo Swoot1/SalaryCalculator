@@ -2,6 +2,7 @@
    angular.module('salaryCalculator').controller('SalaryCalculatorController', ['$scope', 'SalaryCalculationFactory', 'MunicipalityService', function ($scope, SalaryCalculationFactory, MunicipalityService) {
       $scope.calculationsAreVisible = false;
       $scope.showCostsForm = false;
+
       $scope.personBirthYearCollection =
          (function () {
          var years = [];
@@ -29,7 +30,8 @@
       $scope.test = {
          numberOfVacationDaysInAYear: 25,
          billableTimePercentage: 60,
-         profitPercentageOfIncome: 20
+         profitPercentageOfIncome: 20,
+         hasServicePension: true
       };
 
       $scope.municipalityTaxInformation = {
@@ -50,14 +52,35 @@
       $scope.calculate();
 
       $scope.calculateMonthlyWageAfterTaxes = function () {
-         var numberOfMonthsInAYear = 12, monthlyWage;
+         var monthlyWage;
 
          if (!$scope.salaryCalculation.remainingAmountAfterTaxes) {
             monthlyWage = 0;
          } else {
-            monthlyWage = ($scope.salaryCalculation.remainingAmountAfterTaxes / numberOfMonthsInAYear - $scope.calculateProfitPerMonth()) / (1 + getVacationPercentageOfSalaryInDecimalForm());
+            monthlyWage = calculateMonthlyWageBeforeTaxesAndAfterProfit() / (1 + getVacationPercentageOfSalaryInDecimalForm()) - calculateServicePension();
          }
          return  monthlyWage;
+      };
+
+      var calculateMonthlyWageBeforeTaxesAndProfit = function(){
+         var numberOfMonthsInAYear = 12;
+
+         return $scope.salaryCalculation.remainingAmountAfterTaxes / numberOfMonthsInAYear;
+      };
+
+      var calculateMonthlyWageBeforeTaxesAndAfterProfit = function(){
+         return calculateMonthlyWageBeforeTaxesAndProfit() - $scope.calculateProfitPerMonth()
+      };
+
+      var calculateServicePension = function(){
+         var decimalPercentageOfSalaryForServicePension = 0.05, servicePension;
+
+         if($scope.test.hasServicePension){
+            servicePension = (calculateMonthlyWageBeforeTaxesAndAfterProfit() / (1 + getVacationPercentageOfSalaryInDecimalForm())) * decimalPercentageOfSalaryForServicePension;
+         }else{
+            servicePension = 0;
+         }
+         return servicePension;
       };
 
       var getVacationPercentageOfSalaryInDecimalForm = function () {
@@ -124,8 +147,7 @@
 
       $scope.calculateProfitPerMonth = function () {
          var profitPercentageOfIncomeInDecimalForm = $scope.test.profitPercentageOfIncome / 100;
-         var numberOfMonthsInAYear = 12;
-         return profitPercentageOfIncomeInDecimalForm * $scope.salaryCalculation.remainingAmountAfterTaxes / numberOfMonthsInAYear;
+         return profitPercentageOfIncomeInDecimalForm * calculateMonthlyWageBeforeTaxesAndProfit();
       };
 
       $scope.costCollection = [];

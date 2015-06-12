@@ -1,51 +1,84 @@
 <div class="row">
-    <div class="large-6 columns">
+    <div class="large-7 columns">
+        <h1>Räkna ut konsultarvode per timme</h1>
+
+        <p>Här kan du räkna ut ditt timarvode som konsult och samtidigt få en överblick över bl.a. preliminärskatt,
+            egenavgifter och andra skatter.</p>
+
+        <p>
+            Kalkylatorn utgår ifrån att du jobbar 8 timmar per dag och att du är ledig röda dagar. Resultatet ska ses som en riktlinje.</p>
+        <p>Tänk på att begära mer i timarvode vid en förhandling än vad som visas i uträkningen. Dels för att det är skönt för kunden (och för dig) att ha en prutmån och dels för att det är lättare att gå ner i pris när priset lagts för högt än att gå upp i pris om det visar sig att priset som lagts var för lågt.</p>
+        <p> Det värsta som kan hända om du begär ett högre timarvode är att kunden säger nej och då vet du vilken prutmån du har och hur mycket du kan gå ner i pris.
+        </p>
         <form ng-model="salaryCalculation" ng-model-options="{debounce : 500}">
             <label>
                 Vilket år är du född?
                 <select ng-model="salaryCalculation.person.birthYear" ng-change="calculate()">
-                    <option ng-repeat="personBirthYear in personBirthYearCollection" value="{{personBirthYear}}">{{personBirthYear}}</option>
+                    <option ng-repeat="personBirthYear in personBirthYearCollection"
+                            ng-selected="{{personBirthYear === salaryCalculation.person.birthYear}}"
+                            value="{{personBirthYear}}">{{personBirthYear}}
+                    </option>
                 </select>
             </label>
 
             <label>
-                Vilken kommun bor du i?
-                <select ng-model="municipalityTaxInformation.municipalityIndex" ng-change="setTownships(municipalityTaxInformation.municipalityIndex)">
-                    <option ng-repeat="municipality in municipalities" value="{{$index}}">{{municipality.municipality}}</option>
+                I vilken kommun bor du?
+                <select ng-model="municipalityTaxInformation.municipalityIndex"
+                        ng-change="setTownships(municipalityTaxInformation.municipalityIndex)">
+                    <option ng-repeat="municipality in municipalities"
+                            ng-selected="{{$index === municipalityTaxInformation.municipalityIndex}}"
+                            value="{{$index}}">{{municipality.municipality}}
+                    </option>
                 </select>
             </label>
             <label>
                 Vilken församling tillhör du?
                 <select ng-model="municipalityTaxInformation.townshipIndex">
-                    <option ng-repeat="township in townships" value="{{$index}}">{{township.township}}</option>
+                    <option ng-repeat="township in townships"
+                            ng-selected="{{$index === municipalityTaxInformation.townshipIndex}}" value="{{$index}}">
+                        {{township.township}}
+                    </option>
                 </select>
             </label>
             <label>Är du medlem i Svenska Kyrkan?</label>
             <label>
-                <input type="radio" ng-model="municipalityTaxInformation.isMemberOfSwedishChurch" name="isMemberOfSwedishChurch" ng-value="{{true}}"> Ja
-                </label>
-            <label>
-                <input type="radio" ng-model="municipalityTaxInformation.isMemberOfSwedishChurch" name="isMemberOfSwedishChurch" ng-value="{{false}}"> Nej
+                <input type="radio" ng-model="municipalityTaxInformation.isMemberOfSwedishChurch"
+                       name="isMemberOfSwedishChurch" ng-value="{{true}}"> Ja
             </label>
             <label>
-                Hur många procent av din arbetade tid kan du fakturera till kund?
-                <input type="range" ng-model="test.billableTimePercentage" ng-change="calculate()" min="10" max="100" step="5"/>
+                <input type="radio" ng-model="municipalityTaxInformation.isMemberOfSwedishChurch"
+                       name="isMemberOfSwedishChurch" ng-value="{{false}}"> Nej
+            </label>
+            <label>
+                Hur stor del av din arbetstid kan du fakturera?
+                <input type="range" ng-model="test.billableTimePercentage" ng-change="calculate()" min="10" max="100"
+                       step="5"/>
+
                 <p>{{test.billableTimePercentage}} %</p>
             </label>
             <label>
-                Antal procent av inkomsten som ska återinvesteras i företaget
-                <input type="range" ng-model="test.profitPercentageOfIncome" min="0" max="100" step="5" />
+                Hur stor procent av inkomsten ska återinvesteras i företaget?
+                <input type="range" ng-model="test.profitPercentageOfIncome" min="0" max="100" step="5"/>
+
                 <p>{{test.profitPercentageOfIncome}}%</p>
             </label>
             <label>
-                Antal semesterdagar
-                <input type="range" ng-model="test.numberOfVacationDaysInAYear" min="0" max="50" step="1" />
+                Hur många semesterdagar vill du ta ut per år?
+                <input type="range" ng-model="test.numberOfVacationDaysInAYear" min="0" max="50" step="1"/>
+
                 <p> {{test.numberOfVacationDaysInAYear}} </p>
             </label>
             <label>
-                Årets inkomst efter att moms och kostnader har dragits av
-                <input type="range" style="width:100%;" ng-model="salaryCalculation.earnedIncome" min="200000" max="1500000" step="10000" ng-change="calculate()"/>
+                Vill du avsätta 5% av din lön till din tjänstepension?
             </label>
+            <label><input type="radio" ng-model="test.hasServicePension" name="hasServicePension" ng-value="{{true}}"/> Ja</label>
+            <label><input type="radio" ng-model="test.hasServicePension" name="hasServicePension" ng-value="{{false}}"/> Nej</label>
+            <label>
+                Årets beräknade inkomst efter att moms och kostnader har dragits av.
+                <input type="range" style="width:100%;" ng-model="salaryCalculation.earnedIncome" min="200000"
+                       max="2000000" step="10000" ng-change="calculate()"/>
+            </label>
+
             <p> {{salaryCalculation.earnedIncome}} </p>
         </form>
     </div>
@@ -53,7 +86,8 @@
 
 <div class="row">
     <div class="large-6 columns">
-        <p ng-if="!showCostsForm"><span class="link" ng-click="setShowCostsForm(true)">Lägg till företagets kostnader</span> för
+        <p ng-if="!showCostsForm"><span class="link"
+                                        ng-click="setShowCostsForm(true)">Lägg till företagets kostnader</span> för
             att få ett mer rättvist resultat.</p>
 
         <p><span class="link" ng-if="showCostsForm" ng-click="setShowCostsForm(false)">Dölj kostnader</span></p>
@@ -122,7 +156,8 @@
 
             <p>Skattereduktion för allmän pensionsavgift: {{salaryCalculation.generalRetirementFeeDeduction}}</p>
 
-            <p>Skattereduktion för arbetsinkomster (jobbskatteavdrag): {{salaryCalculation.largestPossibleWorkTaxDeduction}}</p>
+            <p>Skattereduktion för arbetsinkomster (jobbskatteavdrag):
+                {{salaryCalculation.largestPossibleWorkTaxDeduction}}</p>
 
             <p>Skatt att betala (preliminärskatt): {{salaryCalculation.sumOfTaxes}}</p>
         </div>
