@@ -1,5 +1,6 @@
 (function () {
    angular.module('salaryCalculator').controller('SalaryCalculatorController', ['$scope', 'SalaryCalculationFactory', 'MunicipalityService', function ($scope, SalaryCalculationFactory, MunicipalityService) {
+      var timeoutHandler;
       $scope.calculationsAreVisible = false;
       $scope.showCostsForm = false;
 
@@ -43,10 +44,15 @@
       $scope.municipalities = MunicipalityService.getMunicipalities();
 
       $scope.calculate = function () {
-         var salaryCalculation = new SalaryCalculationFactory($scope.salaryCalculation);
-         salaryCalculation.$save({}, function (responseData) {
-            $scope.salaryCalculation = responseData;
-         });
+         clearTimeout(timeoutHandler);
+
+         timeoutHandler = setTimeout(function(){
+            var salaryCalculation = new SalaryCalculationFactory($scope.salaryCalculation);
+            salaryCalculation.$save({}, function (responseData) {
+               $scope.salaryCalculation = responseData;
+            });
+         }, 600);
+
       };
 
       $scope.calculate();

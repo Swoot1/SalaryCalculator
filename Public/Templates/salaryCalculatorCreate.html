@@ -7,10 +7,10 @@
 
         <p>
             Kalkylatorn utgår ifrån att du jobbar 8 timmar per dag och att du är ledig röda dagar. Resultatet ska ses som en riktlinje.</p>
-        <p>Tänk på att begära mer i timarvode vid en förhandling än vad som visas i uträkningen. Dels för att det är skönt för kunden (och för dig) att ha en prutmån och dels för att det är lättare att gå ner i pris när priset lagts för högt än att gå upp i pris om det visar sig att priset som lagts var för lågt.</p>
+        <p>Tänk på att begära mer i lön per timme vid en förhandling än vad som visas i uträkningen. Dels för att det är skönt för kunden (och för dig) att ha en prutmån och dels för att det är lättare att gå ner i pris när priset lagts för högt än att gå upp i pris om det visar sig att priset som lagts var för lågt.</p>
         <p> Det värsta som kan hända om du begär ett högre timarvode är att kunden säger nej och då vet du vilken prutmån du har och hur mycket du kan gå ner i pris.
         </p>
-        <form ng-model="salaryCalculation" ng-model-options="{debounce : 500}">
+        <form ng-model="salaryCalculation">
             <label>
                 Vilket år är du född?
                 <select ng-model="salaryCalculation.person.birthYear" ng-change="calculate()">
