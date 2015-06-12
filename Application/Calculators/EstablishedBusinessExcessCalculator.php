@@ -23,16 +23,6 @@ class EstablishedBusinessExcessCalculator{
     * @return int
     */
    public function calculateEstablishedBusinessExcess(){
-      return $this->taxCalculationReport->getEstablishedEarnedIncome() - $this->getStandardDeductionForOwnFees();
-   }
-
-   /**
-    * Returns the standard deduction for own fees (grundavdrag för egenavgifter)
-    * @return float
-    */
-   private function getStandardDeductionForOwnFees(){
-      $standardDeductionInDecimalPercentage = 0.25;
-
-      return $this->taxCalculationReport->getEstablishedEarnedIncome() * $standardDeductionInDecimalPercentage;
+      return $this->taxCalculationReport->getEstablishedEarnedIncome();
    }
 } 
