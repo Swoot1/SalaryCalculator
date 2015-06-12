@@ -13,7 +13,7 @@ class TaxableBusinessExcessCalculator{
     * @return int
     */
    public function getTaxableBusinessExcess(TaxCalculationReport $taxCalculationReport){
-      $taxableBusinessExcess           = $taxCalculationReport->getEstablishedBusinessExcess() - $taxCalculationReport->calculateBaseDeductionRoundedUpToNearestHundred();
+      $taxableBusinessExcess           = $taxCalculationReport->getEstablishedBusinessExcess() - $taxCalculationReport->getBaseDeductionRoundedUpToNearestHundred();
       $isTaxableBusinessExcessNegative = $taxableBusinessExcess < 0;
 
       if ($isTaxableBusinessExcessNegative){

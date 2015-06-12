@@ -5,6 +5,9 @@ namespace Application;
 use Application\PHPFramework\GeneralModel;
 
 class TaxCalculationReport extends GeneralModel{
+   /**
+    * @var Person
+    */
    protected $person;
    protected $earnedIncome;
    protected $establishedEarnedIncome;
@@ -57,10 +60,6 @@ class TaxCalculationReport extends GeneralModel{
 
    public function getTaxableIncome(){
       return $this->taxableIncome;
-   }
-
-   public function calculateBaseDeductionRoundedUpToNearestHundred(){
-      return $this->baseDeductionRoundedUpToNearestHundred;
    }
 
    public function setTaxableIncome($taxableIncome){
