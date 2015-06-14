@@ -10,10 +10,15 @@ class EstablishedBusinessExcessCalculator{
     * @var TaxCalculationReport
     */
    private $taxCalculationReport;
+   /**
+    * @var OwnFeesPercentageCalculator
+    */
+   private $ownFeesPercentageCalculator;
 
-   public function __construct(TaxCalculationReport $taxCalculationReport){
+   public function __construct(TaxCalculationReport $taxCalculationReport, OwnFeesPercentageCalculator $ownFeesPercentageCalculator){
 
-      $this->taxCalculationReport = $taxCalculationReport;
+      $this->taxCalculationReport        = $taxCalculationReport;
+      $this->ownFeesPercentageCalculator = $ownFeesPercentageCalculator;
    }
 
    /**
@@ -23,6 +28,37 @@ class EstablishedBusinessExcessCalculator{
     * @return int
     */
    public function calculateEstablishedBusinessExcess(){
-      return $this->taxCalculationReport->getEstablishedEarnedIncome();
+      return $this->taxCalculationReport->getEstablishedEarnedIncome() - $this->getStandardDeductionForOwnFees();
+   }
+
+   /**
+    * Returns the standard deduction for own fees (grundavdrag för egenavgifter)
+    * @return float
+    */
+   private function getStandardDeductionForOwnFees(){
+
+
+      return $this->taxCalculationReport->getEstablishedEarnedIncome() * $this->getDeductionPercentageInDecimalForm();
+   }
+
+   /**
+    * The percentage of the deduction depends on the percentage that will be used calculating the own
+    * fee.
+    * @return float|int
+    */
+   private function getDeductionPercentageInDecimalForm(){
+      $ownFeesPercentage = $this->ownFeesPercentageCalculator->getOwnFeePercentageInDecimalForm() * 100;
+
+      if ($ownFeesPercentage === 0.1021){
+         $percentageInDecimalForm = 0.10;
+      } else if ($ownFeesPercentage === 14.88){
+         $percentageInDecimalForm = 0.14;
+      } else if ($ownFeesPercentage === 0){
+         $percentageInDecimalForm = 0;
+      } else{
+         $percentageInDecimalForm = 0.25;
+      }
+
+      return $percentageInDecimalForm;
    }
 } 

@@ -23,6 +23,7 @@ class TaxCalculationReport extends GeneralModel{
    protected $largestPossibleWorkTaxDeduction;
    protected $sumOfTaxes = 0;
    protected $remainingAmountAfterTaxes = 0;
+   protected $reductionOfOwnFees = 0;
 
    public function setPerson(Person $person){
       $this->person = $person;
@@ -126,7 +127,8 @@ class TaxCalculationReport extends GeneralModel{
                           + $this->increasedStateIncomeTax
                           + $this->generalRetirementFeeRoundedToClosestHundred
                           - $this->generalRetirementFeeDeduction
-                          - $this->largestPossibleWorkTaxDeduction;
+                          - $this->largestPossibleWorkTaxDeduction
+                          - $this->reductionOfOwnFees;
       $this->calculateRemainingAmountAfterTaxes();
    }
 
@@ -161,6 +163,11 @@ class TaxCalculationReport extends GeneralModel{
 
    public function getMunicipalityTaxPercentage(){
       return $this->person->getMunicipalityTaxPercentage();
+   }
+
+   public function setReductionOfOwnFees($reductionOfOwnFees){
+      $this->reductionOfOwnFees = $reductionOfOwnFees;
+      $this->setSumOfTaxes();
    }
 
    protected function setUpValidation(){

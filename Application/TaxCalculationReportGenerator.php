@@ -7,6 +7,8 @@ use Application\Calculators\EstablishedBusinessExcessCalculator;
 use Application\Calculators\GeneralRetirementFeeCalculator;
 use Application\Calculators\MunicipalityTaxCalculator;
 use Application\Calculators\OwnFeesCalculator;
+use Application\Calculators\OwnFeesPercentageCalculator;
+use Application\Calculators\ReductionOfOwnFeesCalculator;
 use Application\Calculators\StateIncomeTaxCalculator;
 use Application\Calculators\TaxableIncomeCalculator;
 use Application\Calculators\WorkTaxDeductionCalculator;
@@ -35,15 +37,21 @@ class TaxCalculationReportGenerator extends GeneralModel{
       $taxCalculationReport->setPerson($this->person);
       $taxCalculationReport->setEarnedIncome($this->earnedIncome);
 
-      $establishedBusinessExcessCalculator = new EstablishedBusinessExcessCalculator($taxCalculationReport);
+      $ownFeesPercentageCalculator = new OwnFeesPercentageCalculator($this->person);
+
+      $establishedBusinessExcessCalculator = new EstablishedBusinessExcessCalculator($taxCalculationReport, $ownFeesPercentageCalculator);
       $establishedBusinessExcess           = $establishedBusinessExcessCalculator->calculateEstablishedBusinessExcess();
 
       $taxCalculationReport->setEstablishedBusinessExcess($establishedBusinessExcess);
 
-      $ownFeesCalculator = new OwnFeesCalculator($this->person);
+      $ownFeesCalculator = new OwnFeesCalculator($ownFeesPercentageCalculator);
       $ownFees           = $ownFeesCalculator->calculateOwnFees($taxCalculationReport);
 
       $taxCalculationReport->setOwnFees($ownFees);
+
+      $reductionOfOwnFeesCalculator = new ReductionOfOwnFeesCalculator($taxCalculationReport, $this->person);
+      $reductionOfOwnFees = $reductionOfOwnFeesCalculator->calculateReductionOfOwnFees();
+      $taxCalculationReport->setReductionOfOwnFees($reductionOfOwnFees);
 
       $baseDeductionCalculator                = new BaseDeductionCalculator($this->baseAmountsForCurrentYear, $taxCalculationReport);
       $baseDeductionRoundedUpToNearestHundred = $baseDeductionCalculator->calculateBaseDeductionRoundedUpToNearestHundred($taxCalculationReport);

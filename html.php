@@ -33,7 +33,7 @@ echo '<!DOCTYPE html>
              </div>
              <div class="row footer">
                 <div class="large-6 columns right">
-                  <p class="right">Eventuella fel rapporteras till yoyoyowazzup[snabel-a]hotmail.com</p>
+                  <p class="right">Rapportera eventuella fel till yoyoyowazzup[snabel-a]hotmail.com</p>
                </div>
                <div class="large-6 columns">
                  <p>Senast uppdaterad juni 2015.</p>
