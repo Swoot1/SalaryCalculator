@@ -36,8 +36,6 @@ class EstablishedBusinessExcessCalculator{
     * @return float
     */
    private function getStandardDeductionForOwnFees(){
-
-
       return $this->taxCalculationReport->getEstablishedEarnedIncome() * $this->getDeductionPercentageInDecimalForm();
    }
 
