@@ -37,7 +37,7 @@ class Person extends GeneralModel{
                array(
                   'genericName'      => 'kommunalskatt',
                   'propertyName'     => 'municipalityTaxPercentage',
-                  'numberOfDecimals' => 2
+                  'numberOfDecimals' => 3
                )
             )
          ));
