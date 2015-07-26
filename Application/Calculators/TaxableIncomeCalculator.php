@@ -13,10 +13,10 @@ class TaxableIncomeCalculator{
     */
    public function getTaxableIncome(TaxCalculationReport $taxCalculationReport){
       $taxableIncome           = $taxCalculationReport->getEstablishedBusinessExcess() - $taxCalculationReport->getBaseDeductionRoundedUpToNearestHundred();
-      $isTaxableIncomeNegative = $taxableIncome < 0;
+      $taxableIncomeIsNegative = $taxableIncome < 0;
 
-      if ($isTaxableIncomeNegative){
-         $taxableIncome = 0;
+      if ($taxableIncomeIsNegative){
+         return 0;
       }
 
       return $taxableIncome;
