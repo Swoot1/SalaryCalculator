@@ -35,7 +35,7 @@ class WorkTaxDeductionCalculator{
       $isWorkTaxDeductionLargerThanAllowed = $maximumAllowedWorkTaxDeduction < $workTaxDeduction;
 
       if ($isWorkTaxDeductionLargerThanAllowed){
-         $workTaxDeduction = $maximumAllowedWorkTaxDeduction;
+         return $maximumAllowedWorkTaxDeduction;
       }
 
       return $workTaxDeduction;
