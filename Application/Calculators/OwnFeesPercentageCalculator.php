@@ -17,6 +17,7 @@ class OwnFeesPercentageCalculator {
 
       $this->person = $person;
    }
+
    /**
     * Returns own fee percentage in decimal form (procent i decimalform för att räkna ut egenavgift) based on the persons age and seven days of "karens".
     * // Could also be better if number of "karensdagar" could be chosen. // TODO
@@ -27,10 +28,10 @@ class OwnFeesPercentageCalculator {
     */
    public function getOwnFeePercentageInDecimalForm(){
 
-      if ($this->isPersonYoungerThanTwentyFourYearsOld() || $this->isPersonSixtySixOrUpToSeventySevenYearsOld()){
+      if ($this->isPersonTwentyFiveYearsOrYounger()){
+         $percentage = 0.2369;
+      } else if ($this->isPersonSixtySixOrUpToSeventySevenYearsOld()){
          $percentage = 0.1021;
-      } else if ($this->isPersonTwentyFourOrTwentyFiveYearsOld()){
-         $percentage = 0.1488;
       } else if ($this->isPersonOlderThanSeventySevenYearsOld()){
          $percentage = 0;
       } else{
@@ -40,20 +41,16 @@ class OwnFeesPercentageCalculator {
       return $percentage;
    }
 
-   private function isPersonYoungerThanTwentyFourYearsOld(){
-      return $this->person->getAge() < 24;
-   }
-
    private function isPersonSixtySixOrUpToSeventySevenYearsOld(){
       $ageOfPerson = $this->person->getAge();
 
       return 66 <= $ageOfPerson && $ageOfPerson <= 77;
    }
 
-   private function isPersonTwentyFourOrTwentyFiveYearsOld(){
+   private function isPersonTwentyFiveYearsOrYounger(){
       $ageOfPerson = $this->person->getAge();
 
-      return $ageOfPerson === 24 || $ageOfPerson === 25;
+      return $ageOfPerson <= 25;
    }
 
    private function isPersonOlderThanSeventySevenYearsOld(){
